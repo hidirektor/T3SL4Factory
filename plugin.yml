@@ -1,0 +1,11 @@
+name: T3SL4Factory
+version: 14.02.2023
+author: SYN_T3SL4
+softdepend: [PlaceholderAPI, MVdWPlaceholderAPI]
+main: me.t3sl4.factory.T3SL4Factory
+
+commands:
+  factory:
+    description: Main command of plugin.
+    aliases:
+      - 'fabrika'
