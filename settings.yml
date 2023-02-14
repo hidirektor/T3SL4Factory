@@ -30,7 +30,7 @@ FactoryItem:
     Lore: true
     Enchant: true
   Specs:
-    ID: "7"
+    ID: "57"
     Name: "&eFabrika"
     Lore:
       - "&7-----------"
@@ -53,10 +53,12 @@ Errors:
   PermissionError: "&4Maalesef bu komutu kullanmak için yetkiniz yok."
   PlayerNotFound: "&e%player% &4Adlı oyuncu bulunamadı!"
   MustBeNumber: "&c%deger% &eBir sayı olmadığı için komut başarısız oldu."
+  WorldError: "&eBulunduğun dünya olan &c%dunya% &eadlı dünyada fabrikalar devre dışı."
 Success:
   GivenItem: "&d%player% &eAdlı oyuncuya &c%adet% &etane fabrika verildi."
   DistributedItem: "&eSunucudaki herkese &c%adet% &etane fabrika dağıtıldı."
   AddedItem: "&eEnvanterine &c%adet% &etane fabrika eklendi."
+  Reload: "&eEklenti başarılı bir şekilde yenilendi."
 ########################################
 #    MySQL Ayarları / MySQL Settings   #
 ########################################
@@ -65,6 +67,6 @@ MySQL:
   Host: hostname
   Port: "3306"
   Database: database
-  TableName: madencoin-db
+  TableName: t3sl4factory-db
   User: root
   Password: "123"

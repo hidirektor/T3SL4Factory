@@ -3,18 +3,19 @@ package me.t3sl4.factory.util;
 import me.t3sl4.factory.T3SL4Factory;
 import me.t3sl4.factory.commands.FactoryCommand;
 import me.t3sl4.factory.item.CustomItem;
+import me.t3sl4.factory.listener.BreakListener;
 import me.t3sl4.factory.listener.PlaceListener;
 import me.t3sl4.factory.mysql.MySQL;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 
-import java.io.File;
 import java.util.Arrays;
 
 public class SettingsManager {
     static SettingsManager instance = new SettingsManager();
 
     public ConfigAPI config;
+    public ConfigAPI data;
 
     private T3SL4Factory tfactory;
 
@@ -27,13 +28,14 @@ public class SettingsManager {
     public void setup(T3SL4Factory tfactory) {
         this.tfactory = tfactory;
         this.config = new ConfigAPI(T3SL4Factory.getPlugin(), "settings", Boolean.valueOf(true));
+        this.data = new ConfigAPI(T3SL4Factory.getPlugin(), "data", Boolean.valueOf(true));
         if (MessageUtil.MySQLSystem) {
             MySQL.readMySQL();
             MySQL.connect();
             MySQL.createTable();
         }
         registerCommands();
-        registerListener(new Listener[] { new PlaceListener()});
+        registerListener(new Listener[] { new PlaceListener(), new BreakListener()});
         MessageUtil.loadMessages();
 
         int facID = 0;

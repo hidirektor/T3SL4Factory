@@ -20,17 +20,20 @@ public class MessageUtil {
     public static String FactoryItemName;
     public static List<String> FactoryItemLore;
     public static List<String> FactoryItemEnchants;
+    public static List<String> AvailableWorlds;
 
     public static String PermissionError;
     public static String GiveCommandERR;
     public static String DistributeCommandERR;
     public static String PlayerNotFound;
     public static String MustBeNumber;
+    public static String WorldError;
 
 
     public static String GivenItem;
     public static String DistributedItem;
     public static String AddedItem;
+    public static String Reload;
 
     public static void loadMessages() {
         Prefix = T3SL4Factory.chatcolor(manager.config.getConfig().getString("Prefix"));
@@ -53,5 +56,8 @@ public class MessageUtil {
         GivenItem = Prefix + T3SL4Factory.chatcolor(manager.config.getConfig().getString("Success.GivenItem"));
         DistributedItem = Prefix + T3SL4Factory.chatcolor(manager.config.getConfig().getString("Success.DistributedItem"));
         AddedItem = Prefix + T3SL4Factory.chatcolor(manager.config.getConfig().getString("Success.AddedItem"));
+        Reload = Prefix + T3SL4Factory.chatcolor(manager.config.getConfig().getString("Success.Reload"));
+        WorldError = Prefix + T3SL4Factory.chatcolor(manager.config.getConfig().getString("Errors.WorldError"));
+        AvailableWorlds = manager.config.getConfig().getStringList("Worlds.List");
     }
 }

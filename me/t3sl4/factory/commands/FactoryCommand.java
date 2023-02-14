@@ -119,7 +119,16 @@ public class FactoryCommand implements CommandExecutor {
 
             }
             if(args[0].equalsIgnoreCase("reload")) {
-
+                if(commandSender.isOp() || commandSender.hasPermission("t3sl4factory.reload") || commandSender instanceof ConsoleCommandSender) {
+                    this.manager.config.load();
+                    MessageUtil.loadMessages();
+                    this.manager.data.load();
+                    commandSender.sendMessage(MessageUtil.Reload);
+                    return true;
+                } else {
+                    commandSender.sendMessage(MessageUtil.PermissionError);
+                    return false;
+                }
             }
             if(args[0].equalsIgnoreCase("top10")) {
 
