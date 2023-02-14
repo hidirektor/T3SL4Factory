@@ -25,10 +25,38 @@ InfoLines:
     - "&7/fabrika sorgula <Oyuncu> &e» &aGirilen oyuncunun fabrikalarını gösterir."
     - "&7/fabrika purge &e» &aTüm fabrika bloklarını kaldırır."
     - "&7/fabrika reload &e» &aEklentiyi yeniler."
+FactoryItem:
+  System:
+    Lore: true
+    Enchant: true
+  Specs:
+    ID: "7"
+    Name: "&eFabrika"
+    Lore:
+      - "&7-----------"
+      - " "
+      - "&eDaha kolay para kazanmak için,"
+      - "&efabrikanı yükseltmeyi unutma :))"
+      - " "
+      - "&7-----------"
+    Enchants:
+      - "DURABILITY:30"
+      - "DIG_SPEED:20"
 
 ########################################
 #   Genel Mesajlar / General Messages  #
 ########################################
+Errors:
+  CommandErrors:
+    GiveCommandERR: "&7/fabrika ver <Oyuncu> <Adet> &e» &aOyuncuya fabrika bloğu verilir."
+    DistributeCommandERR: "&7/fabrika dagit <Adet> &e» &aSunucudaki herkese belirtilen miktar kadar fabrika bloğu verir."
+  PermissionError: "&4Maalesef bu komutu kullanmak için yetkiniz yok."
+  PlayerNotFound: "&e%player% &4Adlı oyuncu bulunamadı!"
+  MustBeNumber: "&c%deger% &eBir sayı olmadığı için komut başarısız oldu."
+Success:
+  GivenItem: "&d%player% &eAdlı oyuncuya &c%adet% &etane fabrika verildi."
+  DistributedItem: "&eSunucudaki herkese &c%adet% &etane fabrika dağıtıldı."
+  AddedItem: "&eEnvanterine &c%adet% &etane fabrika eklendi."
 ########################################
 #    MySQL Ayarları / MySQL Settings   #
 ########################################

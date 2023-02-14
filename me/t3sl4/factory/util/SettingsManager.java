@@ -2,6 +2,7 @@ package me.t3sl4.factory.util;
 
 import me.t3sl4.factory.T3SL4Factory;
 import me.t3sl4.factory.commands.FactoryCommand;
+import me.t3sl4.factory.item.CustomItem;
 import me.t3sl4.factory.listener.PlaceListener;
 import me.t3sl4.factory.mysql.MySQL;
 import org.bukkit.event.Listener;
@@ -16,6 +17,8 @@ public class SettingsManager {
     public ConfigAPI config;
 
     private T3SL4Factory tfactory;
+
+    public CustomItem factoryItem;
 
     public static SettingsManager getInstance() {
         return instance;
@@ -32,6 +35,19 @@ public class SettingsManager {
         registerCommands();
         registerListener(new Listener[] { new PlaceListener()});
         MessageUtil.loadMessages();
+
+        int facID = 0;
+        int facData = 0;
+        String[] tempVals = MessageUtil.FactoryItemID.split(":");
+        if (tempVals.length == 1) {
+            facID = Integer.parseInt(tempVals[0]);
+            facData = 0;
+        }
+        if (tempVals.length == 2) {
+            facID = Integer.parseInt(tempVals[0]);
+            facData = Integer.parseInt(tempVals[1]);
+        }
+        this.factoryItem = new CustomItem(facID, facData, MessageUtil.FactoryItemName, MessageUtil.FactoryItemLore, MessageUtil.FactoryItemEnchants, MessageUtil.SFactoryItemLore, MessageUtil.SFactoryItemEnchant);
     }
 
     public void stop() {
