@@ -8,8 +8,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.HashMap;
-
 public class BreakListener implements Listener {
     SettingsManager manager = SettingsManager.getInstance();
     @EventHandler
@@ -43,6 +41,7 @@ public class BreakListener implements Listener {
                         manager.data.save();
                         for(int j=i+1; j<=manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".FactoryCount")+1; j++) {
                             int ID = manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".Factories." + j + ".ID");
+                            String worldName = manager.data.getConfig().getString(blokKiran.getUniqueId() + ".Factories." + j + ".World");
                             int X = manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".Factories." + j + ".X");
                             int Y = manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".Factories." + j + ".Y");
                             int Z = manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".Factories." + j + ".Z");
@@ -50,6 +49,8 @@ public class BreakListener implements Listener {
                             manager.data.getConfig().set(blokKiran.getUniqueId() + ".Factories." + realPos, null);
                             manager.data.save();
                             manager.data.getConfig().set(blokKiran.getUniqueId() + ".Factories." + realPos + ".ID", ID-1);
+                            manager.data.save();
+                            manager.data.getConfig().set(blokKiran.getUniqueId() + ".Factories." + realPos + ".World", worldName);
                             manager.data.save();
                             manager.data.getConfig().set(blokKiran.getUniqueId() + ".Factories." + realPos + ".X", X);
                             manager.data.save();

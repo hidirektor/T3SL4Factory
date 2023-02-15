@@ -16,6 +16,7 @@ public class SettingsManager {
 
     public ConfigAPI config;
     public ConfigAPI data;
+    public ConfigAPI playerdata;
 
     private T3SL4Factory tfactory;
 
@@ -29,6 +30,7 @@ public class SettingsManager {
         this.tfactory = tfactory;
         this.config = new ConfigAPI(T3SL4Factory.getPlugin(), "settings", Boolean.valueOf(true));
         this.data = new ConfigAPI(T3SL4Factory.getPlugin(), "data", Boolean.valueOf(true));
+        this.playerdata = new ConfigAPI(T3SL4Factory.getPlugin(), "playerdata", Boolean.valueOf(true));
         if (MessageUtil.MySQLSystem) {
             MySQL.readMySQL();
             MySQL.connect();

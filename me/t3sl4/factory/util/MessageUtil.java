@@ -28,12 +28,17 @@ public class MessageUtil {
     public static String PlayerNotFound;
     public static String MustBeNumber;
     public static String WorldError;
+    public static String DeleteError;
+    public static String NullFactoryError;
+    public static String PurgeCommandERR;
 
 
     public static String GivenItem;
     public static String DistributedItem;
     public static String AddedItem;
     public static String Reload;
+    public static String Deleted;
+    public static String Purged;
 
     public static void loadMessages() {
         Prefix = T3SL4Factory.chatcolor(manager.config.getConfig().getString("Prefix"));
@@ -59,5 +64,10 @@ public class MessageUtil {
         Reload = Prefix + T3SL4Factory.chatcolor(manager.config.getConfig().getString("Success.Reload"));
         WorldError = Prefix + T3SL4Factory.chatcolor(manager.config.getConfig().getString("Errors.WorldError"));
         AvailableWorlds = manager.config.getConfig().getStringList("Worlds.List");
+        DeleteError = Prefix + T3SL4Factory.chatcolor(manager.config.getConfig().getString("Errors.CommandErrors.DeleteCommandERR"));
+        NullFactoryError = Prefix + T3SL4Factory.chatcolor(manager.config.getConfig().getString("Errors.NullFactoryError"));
+        PurgeCommandERR = Prefix + T3SL4Factory.chatcolor(manager.config.getConfig().getString("Errors.CommandErrors.PurgeCommandERR"));
+        Deleted = Prefix + T3SL4Factory.chatcolor(manager.config.getConfig().getString("Success.Deleted"));
+        Purged = Prefix + T3SL4Factory.chatcolor(manager.config.getConfig().getString("Success.Purged"));
     }
 }

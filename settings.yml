@@ -50,15 +50,20 @@ Errors:
   CommandErrors:
     GiveCommandERR: "&7/fabrika ver <Oyuncu> <Adet> &e» &aOyuncuya fabrika bloğu verilir."
     DistributeCommandERR: "&7/fabrika dagit <Adet> &e» &aSunucudaki herkese belirtilen miktar kadar fabrika bloğu verir."
+    DeleteCommandERR: "&7/fabrika sil <Oyuncu> &e» &aOyuncudan fabrika bloğu siler."
+    PurgeCommandERR: "&7/fabrika purge &e» &aTüm fabrika bloklarını kaldırır."
   PermissionError: "&4Maalesef bu komutu kullanmak için yetkiniz yok."
   PlayerNotFound: "&e%player% &4Adlı oyuncu bulunamadı!"
   MustBeNumber: "&c%deger% &eBir sayı olmadığı için komut başarısız oldu."
   WorldError: "&eBulunduğun dünya olan &c%dunya% &eadlı dünyada fabrikalar devre dışı."
+  NullFactoryError: "&c%player% &eAdlı oyuncunun hiç fabrikası yok."
 Success:
   GivenItem: "&d%player% &eAdlı oyuncuya &c%adet% &etane fabrika verildi."
   DistributedItem: "&eSunucudaki herkese &c%adet% &etane fabrika dağıtıldı."
   AddedItem: "&eEnvanterine &c%adet% &etane fabrika eklendi."
   Reload: "&eEklenti başarılı bir şekilde yenilendi."
+  Deleted: "&c%player% &eAdlı oyuncunun &d%adet% &efabrikası silindi."
+  Purged: "&c%toplamoyuncu% &eOyuncunun toplamda &d%adet% &efabrikası silindi."
 ########################################
 #    MySQL Ayarları / MySQL Settings   #
 ########################################

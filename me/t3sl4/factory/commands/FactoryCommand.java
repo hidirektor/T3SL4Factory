@@ -1,22 +1,17 @@
 package me.t3sl4.factory.commands;
 
-import me.t3sl4.factory.item.CustomItem;
+import me.t3sl4.factory.T3SL4Factory;
+import me.t3sl4.factory.util.ConfigAPI;
 import me.t3sl4.factory.util.MessageUtil;
 import me.t3sl4.factory.util.SettingsManager;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemFlag;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-
-import java.io.Console;
-import java.util.ArrayList;
-import java.util.List;
 
 public class FactoryCommand implements CommandExecutor {
     SettingsManager manager = SettingsManager.getInstance();
@@ -80,7 +75,36 @@ public class FactoryCommand implements CommandExecutor {
                 }
             }
             if(args[0].equalsIgnoreCase("sil")) {
-
+                if(commandSender.isOp() || commandSender.hasPermission("t3sl4factory.delete") || commandSender instanceof ConsoleCommandSender) {
+                    if(args.length == 2) {
+                        Player gonderilecekOyuncu = Bukkit.getPlayerExact(args[1]);
+                        if(gonderilecekOyuncu != null) {
+                            String uuid = gonderilecekOyuncu.getUniqueId().toString();
+                            if(manager.data.getConfigurationSection(uuid) != null) {
+                                int factoryCount = manager.data.getConfig().getInt(uuid + ".FactoryCount");
+                                for(int i=0; i<factoryCount; i++) {
+                                    String worldName = manager.data.getConfig().getString(uuid + ".Factories." + i + ".World");
+                                    int X = manager.data.getConfig().getInt(uuid + ".Factories." + i + ".X");
+                                    int Y = manager.data.getConfig().getInt(uuid + ".Factories." + i + ".Y");
+                                    int Z = manager.data.getConfig().getInt(uuid + ".Factories." + i + ".Z");
+                                    Location removingLoc = new Location(Bukkit.getWorld(worldName), X,Y,Z);
+                                    Bukkit.getWorld(worldName).getBlockAt(removingLoc).setType(Material.AIR);
+                                }
+                                manager.data.getConfig().set(uuid, null);
+                                manager.data.save();
+                                commandSender.sendMessage(MessageUtil.Deleted.replaceAll("%player%", gonderilecekOyuncu.getDisplayName()).replaceAll("%adet%", String.valueOf(factoryCount)));
+                            } else {
+                                commandSender.sendMessage(MessageUtil.NullFactoryError.replaceAll("%player%", gonderilecekOyuncu.getDisplayName()));
+                            }
+                        } else {
+                            commandSender.sendMessage(MessageUtil.PlayerNotFound.replaceAll("%player%", args[1]));
+                        }
+                    } else {
+                        commandSender.sendMessage(MessageUtil.DeleteError);
+                    }
+                } else {
+                    commandSender.sendMessage(MessageUtil.PermissionError);
+                }
             }
             if(args[0].equalsIgnoreCase("dagit")) {
                 if(commandSender.isOp() || commandSender.hasPermission("t3sl4factory.distribute") || commandSender instanceof ConsoleCommandSender) {
@@ -116,13 +140,43 @@ public class FactoryCommand implements CommandExecutor {
 
             }
             if(args[0].equalsIgnoreCase("purge")) {
-
+                if(commandSender.isOp() || commandSender.hasPermission("t3sl4factory.purge") || commandSender instanceof ConsoleCommandSender) {
+                    if(args.length == 1) {
+                        int playerCount = manager.playerdata.getConfig().getInt("Players.Count");
+                        int totalFactoryCount = 0;
+                        for(int i=0; i<playerCount; i++) {
+                            String playerUUID = manager.playerdata.getConfig().getString("Players.Players." + i + ".UUID");
+                            int playerFactoryCount = manager.data.getConfig().getInt(playerUUID + ".FactoryCount");
+                            totalFactoryCount += playerFactoryCount;
+                            for(int j=0; j<playerFactoryCount; j++) {
+                                String worldName = manager.data.getConfig().getString(playerUUID + ".Factories." + j + ".World");
+                                int X = manager.data.getConfig().getInt(playerUUID + ".Factories." + j + ".X");
+                                int Y = manager.data.getConfig().getInt(playerUUID + ".Factories." + j + ".Y");
+                                int Z = manager.data.getConfig().getInt(playerUUID + ".Factories." + j + ".Z");
+                                Location removingLoc = new Location(Bukkit.getWorld(worldName), X, Y, Z);
+                                removingLoc.getBlock().setType(Material.AIR);
+                            }
+                            manager.playerdata.getConfig().set("Players.Count", 0);
+                            manager.playerdata.save();
+                            manager.playerdata.getConfig().set("Players.Players." + i, null);
+                            manager.playerdata.save();
+                            manager.data.getConfig().set(playerUUID, null);
+                            manager.data.save();
+                        }
+                        commandSender.sendMessage(MessageUtil.Purged.replaceAll("%toplamoyuncu%", String.valueOf(playerCount)).replaceAll("%adet%", String.valueOf(totalFactoryCount)));
+                    } else {
+                        commandSender.sendMessage(MessageUtil.PurgeCommandERR);
+                    }
+                } else {
+                    commandSender.sendMessage(MessageUtil.PermissionError);
+                }
             }
             if(args[0].equalsIgnoreCase("reload")) {
                 if(commandSender.isOp() || commandSender.hasPermission("t3sl4factory.reload") || commandSender instanceof ConsoleCommandSender) {
                     this.manager.config.load();
                     MessageUtil.loadMessages();
                     this.manager.data.load();
+                    this.manager.playerdata.load();
                     commandSender.sendMessage(MessageUtil.Reload);
                     return true;
                 } else {
