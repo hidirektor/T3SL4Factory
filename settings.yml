@@ -53,6 +53,17 @@ CheckMenu:
     - "&7-------------"
     - "&eHenüz fabrika satın almamışsınız!"
     - "&7-------------"
+  ClickOwnerLore:
+    - "&7-------------"
+    - "&eID: &c%id%"
+    - "&eFabrika Sayısı: &c%toplamadet%"
+    - "&7-------------"
+  ClickPlayerLore:
+    - "&7-------------"
+    - "&eSahibi: &c%player%"
+    - " "
+    - "&eHenüz fabrika satın almamışsınız!"
+    - "&7-------------"
 
 ########################################
 #   Genel Mesajlar / General Messages  #

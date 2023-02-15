@@ -4,6 +4,7 @@ import me.t3sl4.factory.T3SL4Factory;
 import me.t3sl4.factory.commands.FactoryCommand;
 import me.t3sl4.factory.item.CustomItem;
 import me.t3sl4.factory.listener.BreakListener;
+import me.t3sl4.factory.listener.ClickListener;
 import me.t3sl4.factory.listener.PlaceListener;
 import me.t3sl4.factory.mysql.MySQL;
 import org.bukkit.event.Listener;
@@ -37,7 +38,7 @@ public class SettingsManager {
             MySQL.createTable();
         }
         registerCommands();
-        registerListener(new Listener[] { new PlaceListener(), new BreakListener()});
+        registerListener(new Listener[] { new PlaceListener(), new BreakListener(), new ClickListener()});
         MessageUtil.loadMessages();
 
         int facID = 0;

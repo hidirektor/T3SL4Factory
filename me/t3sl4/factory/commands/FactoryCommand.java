@@ -1,8 +1,6 @@
 package me.t3sl4.factory.commands;
 
-import me.t3sl4.factory.T3SL4Factory;
-import me.t3sl4.factory.menu.GUIManager;
-import me.t3sl4.factory.util.ConfigAPI;
+import me.t3sl4.factory.menu.PlayerGUIManager;
 import me.t3sl4.factory.util.MessageUtil;
 import me.t3sl4.factory.util.SettingsManager;
 import org.bukkit.Bukkit;
@@ -144,7 +142,7 @@ public class FactoryCommand implements CommandExecutor {
                         if(args.length == 2) {
                             Player sorgulanacakOyuncu = Bukkit.getPlayerExact(args[1]);
                             if(sorgulanacakOyuncu != null) {
-                                new GUIManager(komutGiren, sorgulanacakOyuncu);
+                                new PlayerGUIManager(komutGiren, sorgulanacakOyuncu);
                             } else {
                                 komutGiren.sendMessage(MessageUtil.PlayerNotFound.replaceAll("%player%", args[1]));
                             }
@@ -195,7 +193,7 @@ public class FactoryCommand implements CommandExecutor {
                     Player komutGonderen = (Player)commandSender;
                     if(komutGonderen.isOp() || komutGonderen.hasPermission("t3sl4factory.stats")) {
                         if(args.length == 1) {
-                            new GUIManager(komutGonderen, komutGonderen);
+                            new PlayerGUIManager(komutGonderen, komutGonderen);
                         } else {
                             komutGonderen.sendMessage(MessageUtil.StatsCommandERR);
                         }
