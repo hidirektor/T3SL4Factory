@@ -15,7 +15,7 @@ Worlds:
 InfoLines:
   Player:
     - "&5            =&b_&5=&b_&5=&b_&5=&b_&2&lT3SL4&c&lFactory&5=&b_&5=&b_&5=&b_&5=&b_"
-    - "&7/fabrika top10 &e» &aFabrika sisteminden en çok para kazananları listeler."
+    - "&7/fabrika top10 &e» &aFabrika sisteminden en çok para kazananları listeler. &7(&4YAKINDA&7)"
     - "&7/fabrika stats &e» &aKurduğun fabrikalardan ne kadar kazandığını ve diğer detayları görüntülersin."
   Official:
     - "&5            =&b_&5=&b_&5=&b_&5=&b_&2&lT3SL4&c&lFactory&5=&b_&5=&b_&5=&b_&5=&b_"
@@ -42,6 +42,17 @@ FactoryItem:
     Enchants:
       - "DURABILITY:30"
       - "DIG_SPEED:20"
+CheckMenu:
+  Title: "&eFabrika Sorgu"
+  OwnerLore:
+    - "&7-------------"
+    - "&eSahibi: &c%player%"
+    - "&eFabrika Sayısı: &c%toplamadet%"
+    - "&7-------------"
+  PlayerLore:
+    - "&7-------------"
+    - "&eHenüz fabrika satın almamışsınız!"
+    - "&7-------------"
 
 ########################################
 #   Genel Mesajlar / General Messages  #
@@ -52,11 +63,14 @@ Errors:
     DistributeCommandERR: "&7/fabrika dagit <Adet> &e» &aSunucudaki herkese belirtilen miktar kadar fabrika bloğu verir."
     DeleteCommandERR: "&7/fabrika sil <Oyuncu> &e» &aOyuncudan fabrika bloğu siler."
     PurgeCommandERR: "&7/fabrika purge &e» &aTüm fabrika bloklarını kaldırır."
+    SorgulaCommandERR: "&7/fabrika sorgula <Oyuncu> &e» &aGirilen oyuncunun fabrikalarını gösterir."
+    StatsCommandERR: "&7/fabrika stats &e» &aKurduğun fabrikalardan ne kadar kazandığını ve diğer detayları görüntülersin."
   PermissionError: "&4Maalesef bu komutu kullanmak için yetkiniz yok."
   PlayerNotFound: "&e%player% &4Adlı oyuncu bulunamadı!"
   MustBeNumber: "&c%deger% &eBir sayı olmadığı için komut başarısız oldu."
   WorldError: "&eBulunduğun dünya olan &c%dunya% &eadlı dünyada fabrikalar devre dışı."
   NullFactoryError: "&c%player% &eAdlı oyuncunun hiç fabrikası yok."
+  ConsoleError: "&4Konsol bu komutu kullanamaz !"
 Success:
   GivenItem: "&d%player% &eAdlı oyuncuya &c%adet% &etane fabrika verildi."
   DistributedItem: "&eSunucudaki herkese &c%adet% &etane fabrika dağıtıldı."

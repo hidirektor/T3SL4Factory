@@ -1,6 +1,7 @@
 package me.t3sl4.factory.commands;
 
 import me.t3sl4.factory.T3SL4Factory;
+import me.t3sl4.factory.menu.GUIManager;
 import me.t3sl4.factory.util.ConfigAPI;
 import me.t3sl4.factory.util.MessageUtil;
 import me.t3sl4.factory.util.SettingsManager;
@@ -137,7 +138,25 @@ public class FactoryCommand implements CommandExecutor {
                 }
             }
             if(args[0].equalsIgnoreCase("sorgula")) {
-
+                if(commandSender instanceof Player) {
+                    Player komutGiren = (Player)commandSender;
+                    if(commandSender.isOp() || commandSender.hasPermission("t3sl4factory.sorgula")) {
+                        if(args.length == 2) {
+                            Player sorgulanacakOyuncu = Bukkit.getPlayerExact(args[1]);
+                            if(sorgulanacakOyuncu != null) {
+                                new GUIManager(komutGiren, sorgulanacakOyuncu);
+                            } else {
+                                komutGiren.sendMessage(MessageUtil.PlayerNotFound.replaceAll("%player%", args[1]));
+                            }
+                        } else {
+                            komutGiren.sendMessage(MessageUtil.SorgulaCommandERR);
+                        }
+                    } else {
+                        komutGiren.sendMessage(MessageUtil.PermissionError);
+                    }
+                } else {
+                    commandSender.sendMessage(MessageUtil.ConsoleError);
+                }
             }
             if(args[0].equalsIgnoreCase("purge")) {
                 if(commandSender.isOp() || commandSender.hasPermission("t3sl4factory.purge") || commandSender instanceof ConsoleCommandSender) {
@@ -171,6 +190,22 @@ public class FactoryCommand implements CommandExecutor {
                     commandSender.sendMessage(MessageUtil.PermissionError);
                 }
             }
+            if(args[0].equalsIgnoreCase("stats")) {
+                if(commandSender instanceof Player) {
+                    Player komutGonderen = (Player)commandSender;
+                    if(komutGonderen.isOp() || komutGonderen.hasPermission("t3sl4factory.stats")) {
+                        if(args.length == 1) {
+                            new GUIManager(komutGonderen, komutGonderen);
+                        } else {
+                            komutGonderen.sendMessage(MessageUtil.StatsCommandERR);
+                        }
+                    } else {
+                        komutGonderen.sendMessage(MessageUtil.PermissionError);
+                    }
+                } else {
+                    commandSender.sendMessage(MessageUtil.ConsoleError);
+                }
+            }
             if(args[0].equalsIgnoreCase("reload")) {
                 if(commandSender.isOp() || commandSender.hasPermission("t3sl4factory.reload") || commandSender instanceof ConsoleCommandSender) {
                     this.manager.config.load();
@@ -183,12 +218,6 @@ public class FactoryCommand implements CommandExecutor {
                     commandSender.sendMessage(MessageUtil.PermissionError);
                     return false;
                 }
-            }
-            if(args[0].equalsIgnoreCase("top10")) {
-
-            }
-            if(args[0].equalsIgnoreCase("stats")) {
-
             }
         }
         return true;

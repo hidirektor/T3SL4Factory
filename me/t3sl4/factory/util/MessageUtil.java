@@ -21,6 +21,9 @@ public class MessageUtil {
     public static List<String> FactoryItemLore;
     public static List<String> FactoryItemEnchants;
     public static List<String> AvailableWorlds;
+    public static String FactoryMenuTitle;
+    public static List<String> FactoryMenuOwnerLore;
+    public static List<String> FactoryMenuPlayerLore;
 
     public static String PermissionError;
     public static String GiveCommandERR;
@@ -31,6 +34,9 @@ public class MessageUtil {
     public static String DeleteError;
     public static String NullFactoryError;
     public static String PurgeCommandERR;
+    public static String SorgulaCommandERR;
+    public static String StatsCommandERR;
+    public static String ConsoleError;
 
 
     public static String GivenItem;
@@ -69,5 +75,11 @@ public class MessageUtil {
         PurgeCommandERR = Prefix + T3SL4Factory.chatcolor(manager.config.getConfig().getString("Errors.CommandErrors.PurgeCommandERR"));
         Deleted = Prefix + T3SL4Factory.chatcolor(manager.config.getConfig().getString("Success.Deleted"));
         Purged = Prefix + T3SL4Factory.chatcolor(manager.config.getConfig().getString("Success.Purged"));
+        FactoryMenuTitle = T3SL4Factory.chatcolor(manager.config.getConfig().getString("CheckMenu.Title"));
+        FactoryMenuOwnerLore = manager.config.getConfig().getStringList("CheckMenu.OwnerLore");
+        FactoryMenuPlayerLore = manager.config.getConfig().getStringList("CheckMenu.PlayerLore");
+        SorgulaCommandERR = Prefix + T3SL4Factory.chatcolor(manager.config.getConfig().getString("Errors.CommandErrors.SorgulaCommandERR"));
+        StatsCommandERR = Prefix + T3SL4Factory.chatcolor(manager.config.getConfig().getString("Errors.CommandErrors.StatsCommandERR"));
+        ConsoleError = Prefix + T3SL4Factory.chatcolor(manager.config.getConfig().getString("Errors.ConsoleError"));
     }
 }
