@@ -1,5 +1,6 @@
 package me.t3sl4.factory.commands;
 
+import me.t3sl4.factory.FactoryAPI;
 import me.t3sl4.factory.menu.PlayerGUIManager;
 import me.t3sl4.factory.util.MessageUtil;
 import me.t3sl4.factory.util.SettingsManager;
@@ -210,6 +211,8 @@ public class FactoryCommand implements CommandExecutor {
                     MessageUtil.loadMessages();
                     this.manager.data.load();
                     this.manager.playerdata.load();
+                    FactoryAPI.stopAllTasks();
+                    FactoryAPI.update();
                     commandSender.sendMessage(MessageUtil.Reload);
                     return true;
                 } else {

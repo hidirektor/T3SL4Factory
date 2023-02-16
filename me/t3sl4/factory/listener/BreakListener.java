@@ -51,12 +51,15 @@ public class BreakListener implements Listener {
                             int X = manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".Factories." + j + ".X");
                             int Y = manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".Factories." + j + ".Y");
                             int Z = manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".Factories." + j + ".Z");
+                            int Level = manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".Factories." + j + ".Level");
                             int realPos = j-1;
                             manager.data.getConfig().set(blokKiran.getUniqueId() + ".Factories." + realPos, null);
                             manager.data.save();
                             manager.data.getConfig().set(blokKiran.getUniqueId() + ".Factories." + realPos + ".ID", ID);
                             manager.data.save();
                             manager.data.getConfig().set(blokKiran.getUniqueId() + ".Factories." + realPos + ".World", worldName);
+                            manager.data.save();
+                            manager.data.getConfig().set(blokKiran.getUniqueId() + ".Factories." + realPos + ".Level", Level);
                             manager.data.save();
                             manager.data.getConfig().set(blokKiran.getUniqueId() + ".Factories." + realPos + ".X", X);
                             manager.data.save();

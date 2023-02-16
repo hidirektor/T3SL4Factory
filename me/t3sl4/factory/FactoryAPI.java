@@ -77,16 +77,31 @@ public class FactoryAPI {
     }
 
     public static void update() {
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                for(BukkitTask tempTask : manager.PlacedFactories.values()) {
-                    Bukkit.getScheduler().runTask((Plugin) T3SL4Factory.getPlugin(), (Runnable) tempTask);
-                }
+        int playerCount = manager.playerdata.getConfig().getInt("Players.Count");
+        for(int i=0; i<playerCount; i++) {
+            String playerUUID = manager.playerdata.getConfig().getString("Players.Players." + i + ".UUID");
+            int playerFactoryCount = manager.data.getConfig().getInt(playerUUID + ".FactoryCount");
+            for(int j=0; j<playerFactoryCount; j++) {
+                String worldName = manager.data.getConfig().getString(playerUUID + ".Factories." + j + ".World");
+                int X = manager.data.getConfig().getInt(playerUUID + ".Factories." + j + ".X");
+                int Y = manager.data.getConfig().getInt(playerUUID + ".Factories." + j + ".Y");
+                int Z = manager.data.getConfig().getInt(playerUUID + ".Factories." + j + ".Z");
+                int factoryLevel = manager.data.getConfig().getInt(playerUUID + ".Factories." + j + ".Level");
+                Location blockLoc = new Location(Bukkit.getWorld(worldName), X, Y, Z);
+                BukkitTask task = Bukkit.getScheduler().runTaskTimer(T3SL4Factory.getPlugin(), () -> {
+                    ItemStack factoryDropItem = new ItemStack(Material.getMaterial(MessageUtil.FactoryDropItem));
+                    if (blockLoc.getWorld() != null) {
+                        blockLoc.getWorld().dropItemNaturally(blockLoc, factoryDropItem);
+                    }
+                }, 0L, (long)factoryLevel * 20L);
+            }
+        }
+        Runnable runnable = () -> {
+            for(BukkitTask tempTask : manager.PlacedFactories.values()) {
+                Bukkit.getScheduler().runTask(T3SL4Factory.getPlugin(), (Runnable) tempTask);
             }
         };
         Bukkit.getScheduler().runTask(T3SL4Factory.getPlugin(), runnable);
-
     }
 
     public static void startTask(Block placedBlock, int factoryLevel, int id) {
@@ -105,17 +120,20 @@ public class FactoryAPI {
             BukkitTask endTask = manager.PlacedFactories.get(manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".Factories." + place + ".ID"));
             endTask.cancel();
             manager.PlacedFactories.remove(manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".Factories." + place + ".ID"));
-            FactoryAPI.update();
         } else if(status == 1) {
             BukkitTask endTask = manager.PlacedFactories.get(manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".Factories." + place + ".ID"));
             endTask.cancel();
             manager.PlacedFactories.remove(manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".Factories." + place + ".ID"));
-            FactoryAPI.update();
         } else {
             BukkitTask endTask = manager.PlacedFactories.get(manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".Factories." + place + ".ID"));
             endTask.cancel();
             manager.PlacedFactories.remove(manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".Factories." + place + ".ID"));
-            FactoryAPI.update();
+        }
+    }
+
+    public static void stopAllTasks() {
+        for(BukkitTask task : manager.PlacedFactories.values()) {
+            task.cancel();
         }
     }
 }
