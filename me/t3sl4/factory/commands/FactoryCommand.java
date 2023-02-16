@@ -43,7 +43,7 @@ public class FactoryCommand implements CommandExecutor {
                         Player gonderilecekOyuncu = Bukkit.getPlayerExact(args[1]);
                         if(gonderilecekOyuncu != null) {
                             gonderilecekOyuncu.getInventory().addItem(manager.factoryItem.getItemStack());
-                            commandSender.sendMessage(MessageUtil.GivenItem.replaceAll("%player%", gonderilecekOyuncu.getDisplayName()).replaceAll("%adet%", String.valueOf(1)));
+                            commandSender.sendMessage(MessageUtil.GivenItem.replaceAll("%player%", gonderilecekOyuncu.getName()).replaceAll("%adet%", String.valueOf(1)));
                             gonderilecekOyuncu.sendMessage(MessageUtil.AddedItem.replaceAll("%adet%", String.valueOf(1)));
                             return true;
                         } else {
@@ -62,7 +62,7 @@ public class FactoryCommand implements CommandExecutor {
                             for(int i=0; i<gonderilecekAdet; i++) {
                                 gonderilecekOyuncu.getInventory().addItem(manager.factoryItem.getItemStack());
                             }
-                            commandSender.sendMessage(MessageUtil.GivenItem.replaceAll("%player%", gonderilecekOyuncu.getDisplayName()).replaceAll("%adet%", String.valueOf(gonderilecekAdet)));
+                            commandSender.sendMessage(MessageUtil.GivenItem.replaceAll("%player%", gonderilecekOyuncu.getName()).replaceAll("%adet%", String.valueOf(gonderilecekAdet)));
                             gonderilecekOyuncu.sendMessage(MessageUtil.AddedItem.replaceAll("%adet%", String.valueOf(gonderilecekAdet)));
                         } else {
                             commandSender.sendMessage(MessageUtil.PlayerNotFound.replaceAll("%player%", args[1]));
@@ -92,9 +92,9 @@ public class FactoryCommand implements CommandExecutor {
                                 }
                                 manager.data.getConfig().set(uuid, null);
                                 manager.data.save();
-                                commandSender.sendMessage(MessageUtil.Deleted.replaceAll("%player%", gonderilecekOyuncu.getDisplayName()).replaceAll("%adet%", String.valueOf(factoryCount)));
+                                commandSender.sendMessage(MessageUtil.Deleted.replaceAll("%player%", gonderilecekOyuncu.getName()).replaceAll("%adet%", String.valueOf(factoryCount)));
                             } else {
-                                commandSender.sendMessage(MessageUtil.NullFactoryError.replaceAll("%player%", gonderilecekOyuncu.getDisplayName()));
+                                commandSender.sendMessage(MessageUtil.NullFactoryError.replaceAll("%player%", gonderilecekOyuncu.getName()));
                             }
                         } else {
                             commandSender.sendMessage(MessageUtil.PlayerNotFound.replaceAll("%player%", args[1]));

@@ -54,7 +54,7 @@ public class FactoryAPI {
                 int playerY = manager.data.getConfig().getInt(uuid + ".Factories." + j + ".Y");
                 int playerZ = manager.data.getConfig().getInt(uuid + ".Factories." + j + ".Z");
                 if(checkX == playerX && checkY == playerY && checkZ == playerZ) {
-                    if(manager.data.getConfig().getString(uuid + ".Name").equals(p.getDisplayName())) {
+                    if(manager.data.getConfig().getString(uuid + ".Name").equals(p.getName())) {
                         return true;
                     }
                 }

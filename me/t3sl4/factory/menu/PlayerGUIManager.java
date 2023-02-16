@@ -40,7 +40,7 @@ public class PlayerGUIManager {
         while(itemLoreIterator.hasNext()) {
             String s = (String)itemLoreIterator.next();
             if(manager.data.getConfig().getConfigurationSection(sorgulanacakOyuncu.getUniqueId().toString()) != null) {
-                outLore.add(T3SL4Factory.chatcolor(s.replaceAll("%player%", sorgulanacakOyuncu.getDisplayName()).replaceAll("%toplamadet%", manager.data.getConfig().getString(sorgulanacakOyuncu.getUniqueId() + ".FactoryCount"))));
+                outLore.add(T3SL4Factory.chatcolor(s.replaceAll("%player%", sorgulanacakOyuncu.getName()).replaceAll("%toplamadet%", manager.data.getConfig().getString(sorgulanacakOyuncu.getUniqueId() + ".FactoryCount"))));
             } else {
                 outLore.add(T3SL4Factory.chatcolor(s));
             }

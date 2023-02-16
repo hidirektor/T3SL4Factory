@@ -33,7 +33,7 @@ public class ClickListener implements Listener {
                             tiklananID = i;
                         }
                     }
-                    new BlockGUIManager(tiklayanOyuncu, tiklananID, true, tiklayanOyuncu.getDisplayName());
+                    new BlockGUIManager(tiklayanOyuncu, tiklananID, true, tiklayanOyuncu.getName());
                 }
             } else {
                 new BlockGUIManager(tiklayanOyuncu, tiklananID, false, FactoryAPI.findByLoc(tiklananBlok.getLocation(), tiklayanOyuncu));

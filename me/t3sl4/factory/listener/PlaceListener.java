@@ -40,7 +40,7 @@ public class PlaceListener implements Listener {
                 manager.playerdata.save();
                 manager.playerdata.getConfig().set("Players.Players." + (manager.playerdata.getConfig().getInt("Players.Count")-1) + ".UUID", blokKoyan.getUniqueId().toString());
                 manager.playerdata.save();
-                manager.data.getConfig().set(blokKoyan.getUniqueId() + ".Name", blokKoyan.getDisplayName());
+                manager.data.getConfig().set(blokKoyan.getUniqueId() + ".Name", blokKoyan.getName());
                 manager.data.getConfig().set(blokKoyan.getUniqueId() + ".FactoryCount", 1);
                 manager.data.getConfig().set(blokKoyan.getUniqueId() + ".Factories." + (manager.data.getConfig().getInt(blokKoyan.getUniqueId() + ".FactoryCount")-1) + ".ID", FactoryAPI.createRandomID());
                 manager.data.getConfig().set(blokKoyan.getUniqueId() + ".Factories." + (manager.data.getConfig().getInt(blokKoyan.getUniqueId() + ".FactoryCount")-1) + ".World", blokKoyan.getWorld().getName());

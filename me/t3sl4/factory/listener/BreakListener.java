@@ -58,22 +58,6 @@ public class BreakListener implements Listener {
                     manager.data.getConfig().set(blokKiran.getUniqueId() + ".Factories." + removingSectionID, null);
                     manager.data.save();
                     blokKiran.getInventory().addItem(manager.factoryItem.getItemStack());
-                    /*if(i == factoryCount-1 && factoryCount == 1) {
-                        FactoryAPI.endTask(0, blokKiran, 0);
-                        manager.data.getConfig().set(String.valueOf(blokKiran.getUniqueId()), null);
-                        manager.data.save();
-                        blokKiran.getInventory().addItem(manager.factoryItem.getItemStack());
-                    } else if(i == factoryCount-1) {
-                        int factoryCountTemp = manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".FactoryCount");
-                        FactoryAPI.endTask(1, blokKiran, (factoryCountTemp-1));
-                        manager.data.getConfig().set(blokKiran.getUniqueId() + ".FactoryCount", manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".FactoryCount")-1);
-                        manager.data.save();
-                        manager.data.getConfig().set(blokKiran.getUniqueId() + ".Factories." + i, null);
-                        manager.data.save();
-                        blokKiran.getInventory().addItem(manager.factoryItem.getItemStack());
-                    } else {
-
-                    }*/
                 }
             }
         }
