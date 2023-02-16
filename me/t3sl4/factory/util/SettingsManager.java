@@ -1,7 +1,5 @@
 package me.t3sl4.factory.util;
 
-import jdk.nashorn.internal.runtime.regexp.joni.Config;
-import jdk.xml.internal.XMLLimitAnalyzer;
 import me.t3sl4.factory.FactoryAPI;
 import me.t3sl4.factory.T3SL4Factory;
 import me.t3sl4.factory.commands.FactoryCommand;
@@ -11,11 +9,7 @@ import me.t3sl4.factory.listener.ClickListener;
 import me.t3sl4.factory.listener.InventoryClickListener;
 import me.t3sl4.factory.listener.PlaceListener;
 import me.t3sl4.factory.mysql.MySQL;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.event.Listener;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
 

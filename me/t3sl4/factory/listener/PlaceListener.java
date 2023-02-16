@@ -1,22 +1,14 @@
 package me.t3sl4.factory.listener;
 
 import me.t3sl4.factory.FactoryAPI;
-import me.t3sl4.factory.T3SL4Factory;
 import me.t3sl4.factory.util.MessageUtil;
 import me.t3sl4.factory.util.SettingsManager;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scheduler.BukkitTask;
 
 public class PlaceListener implements Listener {
     SettingsManager manager = SettingsManager.getInstance();
@@ -41,12 +33,19 @@ public class PlaceListener implements Listener {
                 manager.playerdata.getConfig().set("Players.Players." + (manager.playerdata.getConfig().getInt("Players.Count")-1) + ".UUID", blokKoyan.getUniqueId().toString());
                 manager.playerdata.save();
                 manager.data.getConfig().set(blokKoyan.getUniqueId() + ".Name", blokKoyan.getName());
+                manager.data.save();
                 manager.data.getConfig().set(blokKoyan.getUniqueId() + ".FactoryCount", 1);
+                manager.data.save();
                 manager.data.getConfig().set(blokKoyan.getUniqueId() + ".Factories." + (manager.data.getConfig().getInt(blokKoyan.getUniqueId() + ".FactoryCount")-1) + ".ID", FactoryAPI.createRandomID());
+                manager.data.save();
                 manager.data.getConfig().set(blokKoyan.getUniqueId() + ".Factories." + (manager.data.getConfig().getInt(blokKoyan.getUniqueId() + ".FactoryCount")-1) + ".World", blokKoyan.getWorld().getName());
+                manager.data.save();
                 manager.data.getConfig().set(blokKoyan.getUniqueId() + ".Factories." + (manager.data.getConfig().getInt(blokKoyan.getUniqueId() + ".FactoryCount")-1) + ".Level", 1);
+                manager.data.save();
                 manager.data.getConfig().set(blokKoyan.getUniqueId() + ".Factories." + (manager.data.getConfig().getInt(blokKoyan.getUniqueId() + ".FactoryCount")-1) + ".X", e.getBlockPlaced().getX());
+                manager.data.save();
                 manager.data.getConfig().set(blokKoyan.getUniqueId() + ".Factories." + (manager.data.getConfig().getInt(blokKoyan.getUniqueId() + ".FactoryCount")-1) + ".Y", e.getBlockPlaced().getY());
+                manager.data.save();
                 manager.data.getConfig().set(blokKoyan.getUniqueId() + ".Factories." + (manager.data.getConfig().getInt(blokKoyan.getUniqueId() + ".FactoryCount")-1) + ".Z", e.getBlockPlaced().getZ());
                 manager.data.save();
                 int factoryCount = manager.data.getConfig().getInt(blokKoyan.getUniqueId() + ".FactoryCount");

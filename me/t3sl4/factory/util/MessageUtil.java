@@ -3,7 +3,6 @@ package me.t3sl4.factory.util;
 import me.t3sl4.factory.T3SL4Factory;
 
 import java.util.List;
-import java.util.Map;
 
 public class MessageUtil {
     static SettingsManager manager = SettingsManager.getInstance();
@@ -40,6 +39,8 @@ public class MessageUtil {
     public static String SorgulaCommandERR;
     public static String StatsCommandERR;
     public static String ConsoleError;
+    public static String FactoryMenuBlockOwnerItemName;
+    public static String FactoryMenuBlockPlayerItemName;
 
 
     public static String GivenItem;
@@ -87,5 +88,7 @@ public class MessageUtil {
         FactoryMenuBlockOwnerLore = manager.config.getConfig().getStringList("CheckMenu.ClickOwnerLore");
         FactoryMenuBlockPlayerLore = manager.config.getConfig().getStringList("CheckMenu.ClickPlayerLore");
         FactoryDropItem = manager.config.getConfig().getString("FactoryItem.Specs.DropItem");
+        FactoryMenuBlockOwnerItemName = T3SL4Factory.chatcolor(manager.config.getConfig().getString("CheckMenu.OwnerItemName"));
+        FactoryMenuBlockPlayerItemName = T3SL4Factory.chatcolor(manager.config.getConfig().getString("CheckMenu.PlayerItemName"));
     }
 }

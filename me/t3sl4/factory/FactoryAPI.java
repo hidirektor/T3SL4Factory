@@ -1,27 +1,21 @@
 package me.t3sl4.factory;
 
-import me.t3sl4.factory.factory.IFactory;
 import me.t3sl4.factory.util.MessageUtil;
 import me.t3sl4.factory.util.SettingsManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.block.BlockState;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
-import java.util.function.Function;
 
 public class FactoryAPI {
     static SettingsManager manager = SettingsManager.getInstance();
 
-    public static String findByLoc(Location blockLoc, Player p) {
+    public static int findByLoc(Location blockLoc) {
         int playerCount = manager.playerdata.getConfig().getInt("Players.Count");
         int checkX = blockLoc.getBlockX();
         int checkY = blockLoc.getBlockY();
@@ -34,6 +28,21 @@ public class FactoryAPI {
                 int playerY = manager.data.getConfig().getInt(uuid + ".Factories." + j + ".Y");
                 int playerZ = manager.data.getConfig().getInt(uuid + ".Factories." + j + ".Z");
                 if(checkX == playerX && checkY == playerY && checkZ == playerZ) {
+                    return manager.data.getConfig().getInt(uuid + ".Factories." + j + ".ID");
+                }
+            }
+        }
+        return 0;
+    }
+
+    public static String findByID(int id) {
+        int playerCount = manager.playerdata.getConfig().getInt("Players.Count");
+        for(int i=0; i<playerCount; i++) {
+            String uuid = manager.playerdata.getConfig().getString("Players.Players." + i + ".UUID");
+            int playerFactoryCount = manager.data.getConfig().getInt(uuid + ".FactoryCount");
+            for(int j=0; j<playerFactoryCount; j++) {
+                int checkID = manager.data.getConfig().getInt(uuid + ".Factories." + j + ".ID");
+                if(checkID == id) {
                     return manager.data.getConfig().getString(uuid + ".Name");
                 }
             }
@@ -41,23 +50,18 @@ public class FactoryAPI {
         return null;
     }
 
-    public static boolean checkPlayerFactory(Location blockLoc, Player p) {
-        int playerCount = manager.playerdata.getConfig().getInt("Players.Count");
+    public static boolean checkOwner(Location blockLoc, Player tiklayanOyuncu) {
         int checkX = blockLoc.getBlockX();
         int checkY = blockLoc.getBlockY();
         int checkZ = blockLoc.getBlockZ();
-        for(int i=0; i<playerCount; i++) {
-            String uuid = manager.playerdata.getConfig().getString("Players.Players." + i + ".UUID");
-            int playerFactoryCount = manager.data.getConfig().getInt(uuid + ".FactoryCount");
-            for(int j=0; j<playerFactoryCount; j++) {
-                int playerX = manager.data.getConfig().getInt(uuid + ".Factories." + j + ".X");
-                int playerY = manager.data.getConfig().getInt(uuid + ".Factories." + j + ".Y");
-                int playerZ = manager.data.getConfig().getInt(uuid + ".Factories." + j + ".Z");
-                if(checkX == playerX && checkY == playerY && checkZ == playerZ) {
-                    if(manager.data.getConfig().getString(uuid + ".Name").equals(p.getName())) {
-                        return true;
-                    }
-                }
+        String uuid = tiklayanOyuncu.getUniqueId().toString();
+        int playerFactoryCount = manager.data.getConfig().getInt(uuid + ".FactoryCount");
+        for(int j=0; j<playerFactoryCount; j++) {
+            int playerX = manager.data.getConfig().getInt(uuid + ".Factories." + j + ".X");
+            int playerY = manager.data.getConfig().getInt(uuid + ".Factories." + j + ".Y");
+            int playerZ = manager.data.getConfig().getInt(uuid + ".Factories." + j + ".Z");
+            if(checkX == playerX && checkY == playerY && checkZ == playerZ) {
+                return true;
             }
         }
         return false;

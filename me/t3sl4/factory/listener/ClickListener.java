@@ -20,7 +20,7 @@ public class ClickListener implements Listener {
         String uuid = tiklayanOyuncu.getUniqueId().toString();
         int tiklananID = 0;
         if(tiklamaHareketi.equals(Action.RIGHT_CLICK_BLOCK) && !e.isBlockInHand()) {
-            if(FactoryAPI.checkPlayerFactory(tiklananBlok.getLocation(), tiklayanOyuncu)) {
+            if(FactoryAPI.checkOwner(tiklananBlok.getLocation(), tiklayanOyuncu)) {
                 if(manager.data.getConfigurationSection(uuid) != null) {
                     int playerFactoryCount = manager.data.getConfig().getInt(uuid + ".FactoryCount");
                     int tiklananX = tiklananBlok.getX();
@@ -36,7 +36,7 @@ public class ClickListener implements Listener {
                     new BlockGUIManager(tiklayanOyuncu, tiklananID, true, tiklayanOyuncu.getName());
                 }
             } else {
-                new BlockGUIManager(tiklayanOyuncu, tiklananID, false, FactoryAPI.findByLoc(tiklananBlok.getLocation(), tiklayanOyuncu));
+                new BlockGUIManager(tiklayanOyuncu, FactoryAPI.findByLoc(tiklananBlok.getLocation()), false, tiklayanOyuncu.getName());
             }
         }
     }

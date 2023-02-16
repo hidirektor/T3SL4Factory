@@ -45,13 +45,16 @@ FactoryItem:
     DropItem: DIAMOND_BLOCK
 CheckMenu:
   Title: "&eFabrika Sorgu"
+  OwnerItemName: "&d%player%"
   OwnerLore:
     - "&7-------------"
-    - "&eSahibi: &c%player%"
+    - "&eID: &c%id%"
     - "&eFabrika Sayısı: &c%toplamadet%"
     - "&7-------------"
+  PlayerItemName: "&c%player%"
   PlayerLore:
     - "&7-------------"
+    - "&eSahibi: &c%player%"
     - "&eHenüz fabrika satın almamışsınız!"
     - "&7-------------"
   ClickOwnerLore:

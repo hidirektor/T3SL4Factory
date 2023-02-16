@@ -1,5 +1,6 @@
 package me.t3sl4.factory.menu;
 
+import me.t3sl4.factory.FactoryAPI;
 import me.t3sl4.factory.T3SL4Factory;
 import me.t3sl4.factory.util.MessageUtil;
 import me.t3sl4.factory.util.SettingsManager;
@@ -28,7 +29,6 @@ public class BlockGUIManager {
         ItemStack skull = new ItemStack(mat, 1, (short)SkullType.PLAYER.ordinal());
         SkullMeta meta = (SkullMeta)skull.getItemMeta();
         meta.setOwner(tiklayanOyuncu.getName());
-        meta.setDisplayName(ChatColor.AQUA.toString() + tiklayanOyuncu.getName());
         ArrayList<String> outLore = new ArrayList();
         Iterator itemLoreIterator;
         if(sahiplik) {
@@ -40,9 +40,11 @@ public class BlockGUIManager {
         while(itemLoreIterator.hasNext()) {
             String s = (String)itemLoreIterator.next();
             if(sahiplik) {
+                meta.setDisplayName(MessageUtil.FactoryMenuBlockOwnerItemName.replaceAll("%player%", tiklayanOyuncu.getName()));
                 outLore.add(T3SL4Factory.chatcolor(s.replaceAll("%id%", String.valueOf(id)).replaceAll("%toplamadet%", manager.data.getConfig().getString(tiklayanOyuncu.getUniqueId() + ".FactoryCount"))));
             } else {
-                outLore.add(T3SL4Factory.chatcolor(s.replaceAll("%player%", sahip)));
+                meta.setDisplayName(MessageUtil.FactoryMenuBlockPlayerItemName.replaceAll("%player%", FactoryAPI.findByID(id)));
+                outLore.add(T3SL4Factory.chatcolor(s.replaceAll("%player%", FactoryAPI.findByID(id))));
             }
         }
 

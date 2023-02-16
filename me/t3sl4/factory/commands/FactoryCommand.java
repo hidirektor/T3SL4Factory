@@ -1,5 +1,6 @@
 package me.t3sl4.factory.commands;
 
+import jdk.nashorn.internal.runtime.regexp.JoniRegExp;
 import me.t3sl4.factory.FactoryAPI;
 import me.t3sl4.factory.menu.PlayerGUIManager;
 import me.t3sl4.factory.util.MessageUtil;
@@ -182,6 +183,7 @@ public class FactoryCommand implements CommandExecutor {
                             manager.data.save();
                         }
                         commandSender.sendMessage(MessageUtil.Purged.replaceAll("%toplamoyuncu%", String.valueOf(playerCount)).replaceAll("%adet%", String.valueOf(totalFactoryCount)));
+                        FactoryAPI.stopAllTasks();
                     } else {
                         commandSender.sendMessage(MessageUtil.PurgeCommandERR);
                     }
