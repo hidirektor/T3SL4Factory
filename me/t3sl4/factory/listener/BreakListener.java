@@ -25,7 +25,7 @@ public class BreakListener implements Listener {
                 int kontrolZ = manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".Factories." + i + ".Z");
                 if(kirilanX == kontrolX && kirilanY == kontrolY && kirilanZ == kontrolZ) {
                     e.getBlock().breakNaturally(new ItemStack(Material.AIR, 1));
-                    FactoryAPI.endTask(2, blokKiran, i);
+                    FactoryAPI.endTask(blokKiran, i);
                     manager.data.getConfig().set(blokKiran.getUniqueId() + ".FactoryCount", manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".FactoryCount")-1);
                     manager.data.save();
                     manager.data.getConfig().set(blokKiran.getUniqueId() + ".Factories." + i, null);

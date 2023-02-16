@@ -117,7 +117,7 @@ public class FactoryAPI {
         manager.PlacedFactories.put(id, task);
     }
 
-    public static void endTask(int status, Player blokKiran, int place) {
+    public static void endTask(Player blokKiran, int place) {
         BukkitTask endTask = manager.PlacedFactories.get(manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".Factories." + place + ".ID"));
         endTask.cancel();
         manager.PlacedFactories.remove(manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".Factories." + place + ".ID"));

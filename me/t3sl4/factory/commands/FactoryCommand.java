@@ -78,9 +78,9 @@ public class FactoryCommand implements CommandExecutor {
             if(args[0].equalsIgnoreCase("sil")) {
                 if(commandSender.isOp() || commandSender.hasPermission("t3sl4factory.delete") || commandSender instanceof ConsoleCommandSender) {
                     if(args.length == 2) {
-                        Player gonderilecekOyuncu = Bukkit.getPlayerExact(args[1]);
-                        if(gonderilecekOyuncu != null) {
-                            String uuid = gonderilecekOyuncu.getUniqueId().toString();
+                        Player silinecekOyuncu = Bukkit.getPlayerExact(args[1]);
+                        if(silinecekOyuncu != null) {
+                            String uuid = silinecekOyuncu.getUniqueId().toString();
                             if(manager.data.getConfigurationSection(uuid) != null) {
                                 int factoryCount = manager.data.getConfig().getInt(uuid + ".FactoryCount");
                                 for(int i=0; i<factoryCount; i++) {
@@ -88,14 +88,18 @@ public class FactoryCommand implements CommandExecutor {
                                     int X = manager.data.getConfig().getInt(uuid + ".Factories." + i + ".X");
                                     int Y = manager.data.getConfig().getInt(uuid + ".Factories." + i + ".Y");
                                     int Z = manager.data.getConfig().getInt(uuid + ".Factories." + i + ".Z");
+                                    int ID = manager.data.getConfig().getInt(uuid + ".Factories." + i + ".ID");
+                                    FactoryAPI.endTask(silinecekOyuncu, i);
+                                    //manager.PlacedFactories.remove(ID);
                                     Location removingLoc = new Location(Bukkit.getWorld(worldName), X,Y,Z);
                                     Bukkit.getWorld(worldName).getBlockAt(removingLoc).setType(Material.AIR);
                                 }
+                                //FactoryAPI.update(1);
                                 manager.data.getConfig().set(uuid, null);
                                 manager.data.save();
-                                commandSender.sendMessage(MessageUtil.Deleted.replaceAll("%player%", gonderilecekOyuncu.getName()).replaceAll("%adet%", String.valueOf(factoryCount)));
+                                commandSender.sendMessage(MessageUtil.Deleted.replaceAll("%player%", silinecekOyuncu.getName()).replaceAll("%adet%", String.valueOf(factoryCount)));
                             } else {
-                                commandSender.sendMessage(MessageUtil.NullFactoryError.replaceAll("%player%", gonderilecekOyuncu.getName()));
+                                commandSender.sendMessage(MessageUtil.NullFactoryError.replaceAll("%player%", silinecekOyuncu.getName()));
                             }
                         } else {
                             commandSender.sendMessage(MessageUtil.PlayerNotFound.replaceAll("%player%", args[1]));
