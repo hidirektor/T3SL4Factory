@@ -212,7 +212,7 @@ public class FactoryCommand implements CommandExecutor {
                     this.manager.data.load();
                     this.manager.playerdata.load();
                     FactoryAPI.stopAllTasks();
-                    FactoryAPI.update();
+                    FactoryAPI.update(1);
                     commandSender.sendMessage(MessageUtil.Reload);
                     return true;
                 } else {

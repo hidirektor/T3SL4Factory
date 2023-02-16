@@ -76,7 +76,7 @@ public class FactoryAPI {
         return serial.nextInt((999999999 - 1) + 1) + 1;
     }
 
-    public static void update() {
+    public static void update(int stat) {
         int playerCount = manager.playerdata.getConfig().getInt("Players.Count");
         for(int i=0; i<playerCount; i++) {
             String playerUUID = manager.playerdata.getConfig().getString("Players.Players." + i + ".UUID");
@@ -87,6 +87,7 @@ public class FactoryAPI {
                 int Y = manager.data.getConfig().getInt(playerUUID + ".Factories." + j + ".Y");
                 int Z = manager.data.getConfig().getInt(playerUUID + ".Factories." + j + ".Z");
                 int factoryLevel = manager.data.getConfig().getInt(playerUUID + ".Factories." + j + ".Level");
+                int ID = manager.data.getConfig().getInt(playerUUID + ".Factories." + j + ".ID");
                 Location blockLoc = new Location(Bukkit.getWorld(worldName), X, Y, Z);
                 BukkitTask task = Bukkit.getScheduler().runTaskTimer(T3SL4Factory.getPlugin(), () -> {
                     ItemStack factoryDropItem = new ItemStack(Material.getMaterial(MessageUtil.FactoryDropItem));
@@ -94,14 +95,11 @@ public class FactoryAPI {
                         blockLoc.getWorld().dropItemNaturally(blockLoc, factoryDropItem);
                     }
                 }, 0L, (long)factoryLevel * 20L);
+                if(stat == 0) {
+                    manager.PlacedFactories.put(ID, task);
+                }
             }
         }
-        Runnable runnable = () -> {
-            for(BukkitTask tempTask : manager.PlacedFactories.values()) {
-                Bukkit.getScheduler().runTask(T3SL4Factory.getPlugin(), (Runnable) tempTask);
-            }
-        };
-        Bukkit.getScheduler().runTask(T3SL4Factory.getPlugin(), runnable);
     }
 
     public static void startTask(Block placedBlock, int factoryLevel, int id) {
@@ -116,19 +114,9 @@ public class FactoryAPI {
     }
 
     public static void endTask(int status, Player blokKiran, int place) {
-        if(status == 0) {
-            BukkitTask endTask = manager.PlacedFactories.get(manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".Factories." + place + ".ID"));
-            endTask.cancel();
-            manager.PlacedFactories.remove(manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".Factories." + place + ".ID"));
-        } else if(status == 1) {
-            BukkitTask endTask = manager.PlacedFactories.get(manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".Factories." + place + ".ID"));
-            endTask.cancel();
-            manager.PlacedFactories.remove(manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".Factories." + place + ".ID"));
-        } else {
-            BukkitTask endTask = manager.PlacedFactories.get(manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".Factories." + place + ".ID"));
-            endTask.cancel();
-            manager.PlacedFactories.remove(manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".Factories." + place + ".ID"));
-        }
+        BukkitTask endTask = manager.PlacedFactories.get(manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".Factories." + place + ".ID"));
+        endTask.cancel();
+        manager.PlacedFactories.remove(manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".Factories." + place + ".ID"));
     }
 
     public static void stopAllTasks() {

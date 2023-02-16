@@ -26,7 +26,39 @@ public class BreakListener implements Listener {
                 int kontrolZ = manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".Factories." + i + ".Z");
                 if(kirilanX == kontrolX && kirilanY == kontrolY && kirilanZ == kontrolZ) {
                     e.getBlock().breakNaturally(new ItemStack(Material.AIR, 1));
-                    if(i == factoryCount-1 && factoryCount == 1) {
+                    FactoryAPI.endTask(2, blokKiran, i);
+                    manager.data.getConfig().set(blokKiran.getUniqueId() + ".FactoryCount", manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".FactoryCount")-1);
+                    manager.data.save();
+                    manager.data.getConfig().set(blokKiran.getUniqueId() + ".Factories." + i, null);
+                    manager.data.save();
+                    for(int j=i+1; j<=manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".FactoryCount")+1; j++) {
+                        int ID = manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".Factories." + j + ".ID");
+                        String worldName = manager.data.getConfig().getString(blokKiran.getUniqueId() + ".Factories." + j + ".World");
+                        int X = manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".Factories." + j + ".X");
+                        int Y = manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".Factories." + j + ".Y");
+                        int Z = manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".Factories." + j + ".Z");
+                        int Level = manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".Factories." + j + ".Level");
+                        int realPos = j-1;
+                        manager.data.getConfig().set(blokKiran.getUniqueId() + ".Factories." + realPos, null);
+                        manager.data.save();
+                        manager.data.getConfig().set(blokKiran.getUniqueId() + ".Factories." + realPos + ".ID", ID);
+                        manager.data.save();
+                        manager.data.getConfig().set(blokKiran.getUniqueId() + ".Factories." + realPos + ".World", worldName);
+                        manager.data.save();
+                        manager.data.getConfig().set(blokKiran.getUniqueId() + ".Factories." + realPos + ".Level", Level);
+                        manager.data.save();
+                        manager.data.getConfig().set(blokKiran.getUniqueId() + ".Factories." + realPos + ".X", X);
+                        manager.data.save();
+                        manager.data.getConfig().set(blokKiran.getUniqueId() + ".Factories." + realPos + ".Y", Y);
+                        manager.data.save();
+                        manager.data.getConfig().set(blokKiran.getUniqueId() + ".Factories." + realPos + ".Z", Z);
+                        manager.data.save();
+                    }
+                    int removingSectionID = manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".FactoryCount");
+                    manager.data.getConfig().set(blokKiran.getUniqueId() + ".Factories." + removingSectionID, null);
+                    manager.data.save();
+                    blokKiran.getInventory().addItem(manager.factoryItem.getItemStack());
+                    /*if(i == factoryCount-1 && factoryCount == 1) {
                         FactoryAPI.endTask(0, blokKiran, 0);
                         manager.data.getConfig().set(String.valueOf(blokKiran.getUniqueId()), null);
                         manager.data.save();
@@ -40,39 +72,8 @@ public class BreakListener implements Listener {
                         manager.data.save();
                         blokKiran.getInventory().addItem(manager.factoryItem.getItemStack());
                     } else {
-                        FactoryAPI.endTask(2, blokKiran, i);
-                        manager.data.getConfig().set(blokKiran.getUniqueId() + ".FactoryCount", manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".FactoryCount")-1);
-                        manager.data.save();
-                        manager.data.getConfig().set(blokKiran.getUniqueId() + ".Factories." + i, null);
-                        manager.data.save();
-                        for(int j=i+1; j<=manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".FactoryCount")+1; j++) {
-                            int ID = manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".Factories." + j + ".ID");
-                            String worldName = manager.data.getConfig().getString(blokKiran.getUniqueId() + ".Factories." + j + ".World");
-                            int X = manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".Factories." + j + ".X");
-                            int Y = manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".Factories." + j + ".Y");
-                            int Z = manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".Factories." + j + ".Z");
-                            int Level = manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".Factories." + j + ".Level");
-                            int realPos = j-1;
-                            manager.data.getConfig().set(blokKiran.getUniqueId() + ".Factories." + realPos, null);
-                            manager.data.save();
-                            manager.data.getConfig().set(blokKiran.getUniqueId() + ".Factories." + realPos + ".ID", ID);
-                            manager.data.save();
-                            manager.data.getConfig().set(blokKiran.getUniqueId() + ".Factories." + realPos + ".World", worldName);
-                            manager.data.save();
-                            manager.data.getConfig().set(blokKiran.getUniqueId() + ".Factories." + realPos + ".Level", Level);
-                            manager.data.save();
-                            manager.data.getConfig().set(blokKiran.getUniqueId() + ".Factories." + realPos + ".X", X);
-                            manager.data.save();
-                            manager.data.getConfig().set(blokKiran.getUniqueId() + ".Factories." + realPos + ".Y", Y);
-                            manager.data.save();
-                            manager.data.getConfig().set(blokKiran.getUniqueId() + ".Factories." + realPos + ".Z", Z);
-                            manager.data.save();
-                        }
-                        int removingSectionID = manager.data.getConfig().getInt(blokKiran.getUniqueId() + ".FactoryCount");
-                        manager.data.getConfig().set(blokKiran.getUniqueId() + ".Factories." + removingSectionID, null);
-                        manager.data.save();
-                        blokKiran.getInventory().addItem(manager.factoryItem.getItemStack());
-                    }
+
+                    }*/
                 }
             }
         }

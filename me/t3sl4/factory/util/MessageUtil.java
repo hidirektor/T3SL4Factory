@@ -3,6 +3,7 @@ package me.t3sl4.factory.util;
 import me.t3sl4.factory.T3SL4Factory;
 
 import java.util.List;
+import java.util.Map;
 
 public class MessageUtil {
     static SettingsManager manager = SettingsManager.getInstance();
@@ -27,7 +28,6 @@ public class MessageUtil {
     public static List<String> FactoryMenuBlockOwnerLore;
     public static List<String> FactoryMenuBlockPlayerLore;
     public static String FactoryDropItem;
-
     public static String PermissionError;
     public static String GiveCommandERR;
     public static String DistributeCommandERR;

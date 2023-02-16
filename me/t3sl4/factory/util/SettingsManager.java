@@ -1,5 +1,6 @@
 package me.t3sl4.factory.util;
 
+import jdk.nashorn.internal.runtime.regexp.joni.Config;
 import jdk.xml.internal.XMLLimitAnalyzer;
 import me.t3sl4.factory.FactoryAPI;
 import me.t3sl4.factory.T3SL4Factory;
@@ -37,7 +38,7 @@ public class SettingsManager {
         return instance;
     }
 
-    public static final Map<Integer, BukkitTask> PlacedFactories = new HashMap<>();
+    public static Map<Integer, BukkitTask> PlacedFactories = new HashMap<>();
 
     public void setup(T3SL4Factory tfactory) {
         this.tfactory = tfactory;
@@ -82,6 +83,6 @@ public class SettingsManager {
     }
 
     private void factoryItemTask() {
-        FactoryAPI.update();
+        FactoryAPI.update(0);
     }
 }
