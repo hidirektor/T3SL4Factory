@@ -26,6 +26,7 @@ public class MessageUtil {
     public static List<String> FactoryMenuPlayerLore;
     public static List<String> FactoryMenuBlockOwnerLore;
     public static List<String> FactoryMenuBlockPlayerLore;
+    public static String FactoryDropItem;
 
     public static String PermissionError;
     public static String GiveCommandERR;
@@ -85,5 +86,6 @@ public class MessageUtil {
         ConsoleError = Prefix + T3SL4Factory.chatcolor(manager.config.getConfig().getString("Errors.ConsoleError"));
         FactoryMenuBlockOwnerLore = manager.config.getConfig().getStringList("CheckMenu.ClickOwnerLore");
         FactoryMenuBlockPlayerLore = manager.config.getConfig().getStringList("CheckMenu.ClickPlayerLore");
+        FactoryDropItem = manager.config.getConfig().getString("FactoryItem.Specs.DropItem");
     }
 }

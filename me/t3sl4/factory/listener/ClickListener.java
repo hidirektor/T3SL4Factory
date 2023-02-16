@@ -20,19 +20,21 @@ public class ClickListener implements Listener {
         String uuid = tiklayanOyuncu.getUniqueId().toString();
         int tiklananID = 0;
         if(tiklamaHareketi.equals(Action.RIGHT_CLICK_BLOCK) && !e.isBlockInHand()) {
-            if(manager.data.getConfigurationSection(uuid) != null) {
-                int playerFactoryCount = manager.data.getConfig().getInt(uuid + ".FactoryCount");
-                int tiklananX = tiklananBlok.getX();
-                int tiklananY = tiklananBlok.getY();
-                int tiklananZ = tiklananBlok.getZ();
-                for(int i=0; i<playerFactoryCount; i++) {
-                    if(manager.data.getConfig().getInt(uuid + ".Factories." + i + ".X") == tiklananX &&
-                            manager.data.getConfig().getInt(uuid + ".Factories." + i + ".Y") == tiklananY &&
-                            manager.data.getConfig().getInt(uuid + ".Factories." + i + ".Z") == tiklananZ) {
-                        tiklananID = i;
+            if(FactoryAPI.checkPlayerFactory(tiklananBlok.getLocation(), tiklayanOyuncu)) {
+                if(manager.data.getConfigurationSection(uuid) != null) {
+                    int playerFactoryCount = manager.data.getConfig().getInt(uuid + ".FactoryCount");
+                    int tiklananX = tiklananBlok.getX();
+                    int tiklananY = tiklananBlok.getY();
+                    int tiklananZ = tiklananBlok.getZ();
+                    for(int i=0; i<playerFactoryCount; i++) {
+                        if(manager.data.getConfig().getInt(uuid + ".Factories." + i + ".X") == tiklananX &&
+                                manager.data.getConfig().getInt(uuid + ".Factories." + i + ".Y") == tiklananY &&
+                                manager.data.getConfig().getInt(uuid + ".Factories." + i + ".Z") == tiklananZ) {
+                            tiklananID = i;
+                        }
                     }
+                    new BlockGUIManager(tiklayanOyuncu, tiklananID, true, tiklayanOyuncu.getDisplayName());
                 }
-                new BlockGUIManager(tiklayanOyuncu, tiklananID, true, tiklayanOyuncu.getDisplayName());
             } else {
                 new BlockGUIManager(tiklayanOyuncu, tiklananID, false, FactoryAPI.findByLoc(tiklananBlok.getLocation(), tiklayanOyuncu));
             }

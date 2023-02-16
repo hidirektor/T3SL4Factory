@@ -42,6 +42,7 @@ FactoryItem:
     Enchants:
       - "DURABILITY:30"
       - "DIG_SPEED:20"
+    DropItem: DIAMOND_BLOCK
 CheckMenu:
   Title: "&eFabrika Sorgu"
   OwnerLore:

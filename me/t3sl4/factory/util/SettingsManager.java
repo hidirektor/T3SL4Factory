@@ -1,16 +1,26 @@
 package me.t3sl4.factory.util;
 
+import jdk.xml.internal.XMLLimitAnalyzer;
+import me.t3sl4.factory.FactoryAPI;
 import me.t3sl4.factory.T3SL4Factory;
 import me.t3sl4.factory.commands.FactoryCommand;
 import me.t3sl4.factory.item.CustomItem;
 import me.t3sl4.factory.listener.BreakListener;
 import me.t3sl4.factory.listener.ClickListener;
+import me.t3sl4.factory.listener.InventoryClickListener;
 import me.t3sl4.factory.listener.PlaceListener;
 import me.t3sl4.factory.mysql.MySQL;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.scheduler.BukkitTask;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SettingsManager {
     static SettingsManager instance = new SettingsManager();
@@ -27,6 +37,8 @@ public class SettingsManager {
         return instance;
     }
 
+    public static final Map<Integer, BukkitTask> PlacedFactories = new HashMap<>();
+
     public void setup(T3SL4Factory tfactory) {
         this.tfactory = tfactory;
         this.config = new ConfigAPI(T3SL4Factory.getPlugin(), "settings", Boolean.valueOf(true));
@@ -38,7 +50,7 @@ public class SettingsManager {
             MySQL.createTable();
         }
         registerCommands();
-        registerListener(new Listener[] { new PlaceListener(), new BreakListener(), new ClickListener()});
+        registerListener(new Listener[] { new PlaceListener(), new BreakListener(), new ClickListener(), new InventoryClickListener()});
         MessageUtil.loadMessages();
 
         int facID = 0;
@@ -53,6 +65,7 @@ public class SettingsManager {
             facData = Integer.parseInt(tempVals[1]);
         }
         this.factoryItem = new CustomItem(facID, facData, MessageUtil.FactoryItemName, MessageUtil.FactoryItemLore, MessageUtil.FactoryItemEnchants, MessageUtil.SFactoryItemLore, MessageUtil.SFactoryItemEnchant);
+        factoryItemTask();
     }
 
     public void stop() {
@@ -66,5 +79,9 @@ public class SettingsManager {
 
     private void registerListener(Listener... listeners) {
         Arrays.<Listener>stream(listeners).forEach(listener -> this.tfactory.getServer().getPluginManager().registerEvents(listener, (Plugin)this.tfactory));
+    }
+
+    private void factoryItemTask() {
+        FactoryAPI.update();
     }
 }
