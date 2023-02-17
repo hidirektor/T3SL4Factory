@@ -35,7 +35,9 @@ public class InventoryClickListener implements Listener {
         if(invTitle.contains(MessageUtil.FactoryMenuBlockPlayerTitle)) {
             if(e.getCurrentItem().getType().equals(mat)) {
                 p.closeInventory();
-                Bukkit.dispatchCommand(p, MessageUtil.FactoryMenuBlockPlayerCommand);
+                if(MessageUtil.FactoryMenuBlockPlayerCommand != null) {
+                    Bukkit.dispatchCommand(p, MessageUtil.FactoryMenuBlockPlayerCommand);
+                }
             }
         }
     }
