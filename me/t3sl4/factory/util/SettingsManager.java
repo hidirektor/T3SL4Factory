@@ -48,18 +48,7 @@ public class SettingsManager {
         registerListener(new Listener[] { new PlaceListener(), new BreakListener(), new ClickListener(), new InventoryClickListener()});
         MessageUtil.loadMessages();
 
-        int facID = 0;
-        int facData = 0;
-        String[] tempVals = MessageUtil.FactoryItemID.split(":");
-        if (tempVals.length == 1) {
-            facID = Integer.parseInt(tempVals[0]);
-            facData = 0;
-        }
-        if (tempVals.length == 2) {
-            facID = Integer.parseInt(tempVals[0]);
-            facData = Integer.parseInt(tempVals[1]);
-        }
-        this.factoryItem = new CustomItem(facID, facData, MessageUtil.FactoryItemName, MessageUtil.FactoryItemLore, MessageUtil.FactoryItemEnchants, MessageUtil.SFactoryItemLore, MessageUtil.SFactoryItemEnchant);
+        loadCustomItem();
         factoryItemTask();
     }
 
@@ -78,5 +67,20 @@ public class SettingsManager {
 
     private void factoryItemTask() {
         FactoryAPI.update(0);
+    }
+
+    public void loadCustomItem() {
+        int facID = 0;
+        int facData = 0;
+        String[] tempVals = MessageUtil.FactoryItemID.split(":");
+        if (tempVals.length == 1) {
+            facID = Integer.parseInt(tempVals[0]);
+            facData = 0;
+        }
+        if (tempVals.length == 2) {
+            facID = Integer.parseInt(tempVals[0]);
+            facData = Integer.parseInt(tempVals[1]);
+        }
+        this.factoryItem = new CustomItem(facID, facData, MessageUtil.FactoryItemName, MessageUtil.FactoryItemLore, MessageUtil.FactoryItemEnchants, MessageUtil.SFactoryItemLore, MessageUtil.SFactoryItemEnchant);
     }
 }

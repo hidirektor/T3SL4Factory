@@ -43,32 +43,38 @@ FactoryItem:
       - "DURABILITY:30"
       - "DIG_SPEED:20"
     DropItem: DIAMOND_BLOCK
-CheckMenu:
+GUI:
   Title: "&eFabrika Sorgu"
-  OwnerItemName: "&d%player%"
-  OwnerLore:
-    - "&7-------------"
-    - "&eID: &c%id%"
-    - "&eFabrika Sayısı: &c%toplamadet%"
-    - "&7-------------"
-  PlayerItemName: "&c%player%"
-  PlayerLore:
-    - "&7-------------"
-    - "&eSahibi: &c%player%"
-    - "&eHenüz fabrika satın almamışsınız!"
-    - "&7-------------"
-  ClickOwnerLore:
-    - "&7-------------"
-    - "&eID: &c%id%"
-    - "&eFabrika Sayısı: &c%toplamadet%"
-    - "&7-------------"
-  ClickPlayerLore:
-    - "&7-------------"
-    - "&eSahibi: &c%player%"
-    - " "
-    - "&eHenüz fabrika satın almamışsınız!"
-    - "&7-------------"
-
+  BlockGUI:
+    Owner:
+      Title: "&eFabrika Sorgu -- Sahip"
+      OwnerItemName: "&d%player%"
+      OwnerLore:
+        - "&7-------------"
+        - "&eID: &c%id%"
+        - "&eFabrika Sayısı: &c%toplamadet%"
+        - "&7-------------"
+    Player:
+      Title: "&eFabrika Sorgu -- Oyuncu"
+      PlayerItemName: "&c%player%"
+      PlayerItemCommand: "gm 1"
+      PlayerLore:
+        - "&7-------------"
+        - "&eSahibi: &c%player%"
+        - "&eHenüz fabrika satın almamışsınız!"
+        - "&7-------------"
+  CommandGUI:
+    OwnerLore:
+      - "&7-------------"
+      - "&eID: &c%id%"
+      - "&eFabrika Sayısı: &c%toplamadet%"
+      - "&7-------------"
+    PlayerLore:
+      - "&7-------------"
+      - "&eSahibi: &c%player%"
+      - " "
+      - "&eHenüz fabrika satın almamışsınız!"
+      - "&7-------------"
 ########################################
 #   Genel Mesajlar / General Messages  #
 ########################################

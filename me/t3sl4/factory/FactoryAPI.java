@@ -15,7 +15,7 @@ import java.util.*;
 public class FactoryAPI {
     static SettingsManager manager = SettingsManager.getInstance();
 
-    public static int findByLoc(Location blockLoc) {
+    public static int findIDByLoc(Location blockLoc) {
         int playerCount = manager.playerdata.getConfig().getInt("Players.Count");
         int checkX = blockLoc.getBlockX();
         int checkY = blockLoc.getBlockY();
@@ -35,7 +35,27 @@ public class FactoryAPI {
         return 0;
     }
 
-    public static String findByID(int id) {
+    public static String findOwnerByLoc(Location blockLoc) {
+        int playerCount = manager.playerdata.getConfig().getInt("Players.Count");
+        int checkX = blockLoc.getBlockX();
+        int checkY = blockLoc.getBlockY();
+        int checkZ = blockLoc.getBlockZ();
+        for(int i=0; i<playerCount; i++) {
+            String uuid = manager.playerdata.getConfig().getString("Players.Players." + i + ".UUID");
+            int playerFactoryCount = manager.data.getConfig().getInt(uuid + ".FactoryCount");
+            for(int j=0; j<playerFactoryCount; j++) {
+                int playerX = manager.data.getConfig().getInt(uuid + ".Factories." + j + ".X");
+                int playerY = manager.data.getConfig().getInt(uuid + ".Factories." + j + ".Y");
+                int playerZ = manager.data.getConfig().getInt(uuid + ".Factories." + j + ".Z");
+                if(checkX == playerX && checkY == playerY && checkZ == playerZ) {
+                    return manager.data.getConfig().getString(uuid + ".Name");
+                }
+            }
+        }
+        return null;
+    }
+
+    public static String findNameByID(int id) {
         int playerCount = manager.playerdata.getConfig().getInt("Players.Count");
         for(int i=0; i<playerCount; i++) {
             String uuid = manager.playerdata.getConfig().getString("Players.Players." + i + ".UUID");
@@ -48,6 +68,26 @@ public class FactoryAPI {
             }
         }
         return null;
+    }
+
+    public static boolean checkLocationFactoryisNull(Location loc, Player p) {
+        int playerCount = manager.playerdata.getConfig().getInt("Players.Count");
+        int checkX = loc.getBlockX();
+        int checkY = loc.getBlockY();
+        int checkZ   = loc.getBlockZ();
+        for(int i=0; i<playerCount; i++) {
+            String uuid = manager.playerdata.getConfig().getString("Players.Players." + i + ".UUID");
+            int playerFactoryCount = manager.data.getConfig().getInt(uuid + ".FactoryCount");
+            for(int j=0; j<playerFactoryCount; j++) {
+                int orgX = manager.data.getConfig().getInt(uuid + ".Factories." + j + ".X");
+                int orgY = manager.data.getConfig().getInt(uuid + ".Factories." + j + ".Y");
+                int orgZ = manager.data.getConfig().getInt(uuid + ".Factories." + j + ".Z");
+                if(checkX == orgX && checkY == orgY && checkZ == orgZ) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public static boolean checkOwner(Location blockLoc, Player tiklayanOyuncu) {

@@ -1,8 +1,7 @@
 package me.t3sl4.factory.commands;
 
-import jdk.nashorn.internal.runtime.regexp.JoniRegExp;
 import me.t3sl4.factory.FactoryAPI;
-import me.t3sl4.factory.menu.PlayerGUIManager;
+import me.t3sl4.factory.menu.CommandGUIManager;
 import me.t3sl4.factory.util.MessageUtil;
 import me.t3sl4.factory.util.SettingsManager;
 import org.bukkit.Bukkit;
@@ -148,7 +147,7 @@ public class FactoryCommand implements CommandExecutor {
                         if(args.length == 2) {
                             Player sorgulanacakOyuncu = Bukkit.getPlayerExact(args[1]);
                             if(sorgulanacakOyuncu != null) {
-                                new PlayerGUIManager(komutGiren, sorgulanacakOyuncu);
+                                new CommandGUIManager(komutGiren, sorgulanacakOyuncu);
                             } else {
                                 komutGiren.sendMessage(MessageUtil.PlayerNotFound.replaceAll("%player%", args[1]));
                             }
@@ -200,7 +199,7 @@ public class FactoryCommand implements CommandExecutor {
                     Player komutGonderen = (Player)commandSender;
                     if(komutGonderen.isOp() || komutGonderen.hasPermission("t3sl4factory.stats")) {
                         if(args.length == 1) {
-                            new PlayerGUIManager(komutGonderen, komutGonderen);
+                            new CommandGUIManager(komutGonderen, komutGonderen);
                         } else {
                             komutGonderen.sendMessage(MessageUtil.StatsCommandERR);
                         }
@@ -214,6 +213,7 @@ public class FactoryCommand implements CommandExecutor {
             if(args[0].equalsIgnoreCase("reload")) {
                 if(commandSender.isOp() || commandSender.hasPermission("t3sl4factory.reload") || commandSender instanceof ConsoleCommandSender) {
                     this.manager.config.load();
+                    manager.loadCustomItem();
                     MessageUtil.loadMessages();
                     this.manager.data.load();
                     this.manager.playerdata.load();

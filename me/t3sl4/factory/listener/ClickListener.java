@@ -2,6 +2,7 @@ package me.t3sl4.factory.listener;
 
 import me.t3sl4.factory.FactoryAPI;
 import me.t3sl4.factory.menu.BlockGUIManager;
+import me.t3sl4.factory.util.MessageUtil;
 import me.t3sl4.factory.util.SettingsManager;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -33,10 +34,10 @@ public class ClickListener implements Listener {
                             tiklananID = i;
                         }
                     }
-                    new BlockGUIManager(tiklayanOyuncu, tiklananID, true, tiklayanOyuncu.getName());
+                    new BlockGUIManager(tiklayanOyuncu, tiklananID, true, MessageUtil.FactoryMenuBlockOwnerTitle);
                 }
             } else {
-                new BlockGUIManager(tiklayanOyuncu, FactoryAPI.findByLoc(tiklananBlok.getLocation()), false, tiklayanOyuncu.getName());
+                new BlockGUIManager(tiklayanOyuncu, FactoryAPI.findIDByLoc(tiklananBlok.getLocation()), false, MessageUtil.FactoryMenuBlockPlayerTitle);
             }
         }
     }

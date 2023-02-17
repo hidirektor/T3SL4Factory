@@ -41,6 +41,9 @@ public class MessageUtil {
     public static String ConsoleError;
     public static String FactoryMenuBlockOwnerItemName;
     public static String FactoryMenuBlockPlayerItemName;
+    public static String FactoryMenuBlockPlayerCommand;
+    public static String FactoryMenuBlockOwnerTitle;
+    public static String FactoryMenuBlockPlayerTitle;
 
 
     public static String GivenItem;
@@ -79,16 +82,19 @@ public class MessageUtil {
         PurgeCommandERR = Prefix + T3SL4Factory.chatcolor(manager.config.getConfig().getString("Errors.CommandErrors.PurgeCommandERR"));
         Deleted = Prefix + T3SL4Factory.chatcolor(manager.config.getConfig().getString("Success.Deleted"));
         Purged = Prefix + T3SL4Factory.chatcolor(manager.config.getConfig().getString("Success.Purged"));
-        FactoryMenuTitle = T3SL4Factory.chatcolor(manager.config.getConfig().getString("CheckMenu.Title"));
-        FactoryMenuOwnerLore = manager.config.getConfig().getStringList("CheckMenu.OwnerLore");
-        FactoryMenuPlayerLore = manager.config.getConfig().getStringList("CheckMenu.PlayerLore");
+        FactoryMenuTitle = T3SL4Factory.chatcolor(manager.config.getConfig().getString("GUI.Title"));
+        FactoryMenuOwnerLore = manager.config.getConfig().getStringList("GUI.BlockGUI.Owner.OwnerLore");
+        FactoryMenuPlayerLore = manager.config.getConfig().getStringList("GUI.BlockGUI.Player.PlayerLore");
         SorgulaCommandERR = Prefix + T3SL4Factory.chatcolor(manager.config.getConfig().getString("Errors.CommandErrors.SorgulaCommandERR"));
         StatsCommandERR = Prefix + T3SL4Factory.chatcolor(manager.config.getConfig().getString("Errors.CommandErrors.StatsCommandERR"));
         ConsoleError = Prefix + T3SL4Factory.chatcolor(manager.config.getConfig().getString("Errors.ConsoleError"));
-        FactoryMenuBlockOwnerLore = manager.config.getConfig().getStringList("CheckMenu.ClickOwnerLore");
-        FactoryMenuBlockPlayerLore = manager.config.getConfig().getStringList("CheckMenu.ClickPlayerLore");
+        FactoryMenuBlockOwnerLore = manager.config.getConfig().getStringList("GUI.CommandGUI.OwnerLore");
+        FactoryMenuBlockPlayerLore = manager.config.getConfig().getStringList("GUI.CommandGUI.PlayerLore");
         FactoryDropItem = manager.config.getConfig().getString("FactoryItem.Specs.DropItem");
-        FactoryMenuBlockOwnerItemName = T3SL4Factory.chatcolor(manager.config.getConfig().getString("CheckMenu.OwnerItemName"));
-        FactoryMenuBlockPlayerItemName = T3SL4Factory.chatcolor(manager.config.getConfig().getString("CheckMenu.PlayerItemName"));
+        FactoryMenuBlockOwnerItemName = T3SL4Factory.chatcolor(manager.config.getConfig().getString("GUI.BlockGUI.Owner.OwnerItemName"));
+        FactoryMenuBlockPlayerItemName = T3SL4Factory.chatcolor(manager.config.getConfig().getString("GUI.BlockGUI.Player.PlayerItemName"));
+        FactoryMenuBlockPlayerCommand = manager.config.getConfig().getString("GUI.BlockGUI.Player.PlayerItemCommand");
+        FactoryMenuBlockPlayerTitle = T3SL4Factory.chatcolor(manager.config.getConfig().getString("GUI.BlockGUI.Player.Title"));
+        FactoryMenuBlockOwnerTitle = T3SL4Factory.chatcolor(manager.config.getConfig().getString("GUI.BlockGUI.Owner.Title"));
     }
 }
