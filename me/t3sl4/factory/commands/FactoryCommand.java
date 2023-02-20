@@ -12,6 +12,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 public class FactoryCommand implements CommandExecutor {
     SettingsManager manager = SettingsManager.getInstance();
@@ -208,6 +209,52 @@ public class FactoryCommand implements CommandExecutor {
                     }
                 } else {
                     commandSender.sendMessage(MessageUtil.ConsoleError);
+                }
+            }
+            if(args[0].equalsIgnoreCase("donustur")) {
+                if(commandSender.isOp() || commandSender.hasPermission("t3sl4factory.donustur") || commandSender instanceof ConsoleCommandSender) {
+                    if(args.length == 2) {
+                        ItemStack newItemStack = new ItemStack(Material.getMaterial(args[1]));
+                        if(newItemStack != null) {
+                            if(manager.playerdata.getConfig().getInt("Players.Count") != 0) {
+                                String checkUUID = manager.playerdata.getConfig().getString("Players.Players." + 0 + ".UUID");
+                                String worldName = manager.data.getConfig().getString(checkUUID + ".Factories." + 0 + ".World");
+                                int checkX = manager.data.getConfig().getInt(checkUUID + ".Factories." + 0 + ".X");
+                                int checkY = manager.data.getConfig().getInt(checkUUID + ".Factories." + 0 + ".Y");
+                                int checkZ = manager.data.getConfig().getInt(checkUUID + ".Factories." + 0 + ".Z");
+                                Location checkLoc = new Location(Bukkit.getWorld(worldName), checkX, checkY, checkZ);
+                                ItemStack checkItemStack = new ItemStack(checkLoc.getBlock().getType());
+                                if(!newItemStack.equals(checkItemStack)) {
+                                    int degisenBlokSayisi = 0;
+                                    int playerCount = manager.playerdata.getConfig().getInt("Players.Count");
+                                    for(int i=0; i<playerCount; i++) {
+                                        String UUID = manager.playerdata.getConfig().getString("Players." + i + ".UUID");
+                                        int playerFactoryCount = manager.data.getConfig().getInt(UUID + ".FactoryCount");
+                                        for(int j=0; j<playerFactoryCount; j++) {
+                                            String replaceWorld = manager.data.getConfig().getString(UUID + ".Factories." + j + ".World");
+                                            int replaceX = manager.data.getConfig().getInt(UUID + ".Factories." + j + ".X");
+                                            int replaceY = manager.data.getConfig().getInt(UUID + ".Factories." + j + ".Y");
+                                            int replaceZ = manager.data.getConfig().getInt(UUID + ".Factories." + j + ".Z");
+                                            Location replaceLoc = new Location(Bukkit.getWorld(replaceWorld), replaceX, replaceY, replaceZ);
+                                            replaceLoc.getBlock().setType(checkItemStack.getType());
+                                            degisenBlokSayisi++;
+                                        }
+                                    }
+                                    commandSender.sendMessage(MessageUtil.ReplacedAllFactories.replaceAll("%totalblok%", String.valueOf(degisenBlokSayisi)));
+                                } else {
+                                    commandSender.sendMessage(MessageUtil.AlreadyEqualsMaterial);
+                                }
+                            } else {
+                                commandSender.sendMessage(MessageUtil.NoFactory);
+                            }
+                        } else {
+                            commandSender.sendMessage(MessageUtil.NewMaterialError);
+                        }
+                    } else {
+                        commandSender.sendMessage(MessageUtil.DonusturmeCommandERR);
+                    }
+                } else {
+                    commandSender.sendMessage(MessageUtil.PermissionError);
                 }
             }
             if(args[0].equalsIgnoreCase("reload")) {

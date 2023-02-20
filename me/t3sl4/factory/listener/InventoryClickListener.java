@@ -22,7 +22,6 @@ public class InventoryClickListener implements Listener {
         Inventory inv = e.getClickedInventory();
         String invTitle = e.getView().getTitle();
         Material mat = XMaterial.SKELETON_SKULL.parseMaterial();
-        ItemMeta tempMeta;
         if(inv == null || !e.getCurrentItem().hasItemMeta() || !e.getCurrentItem().getItemMeta().hasDisplayName() || e.getCurrentItem() == null || e.getCurrentItem().getType() != mat) {
             return;
         }

@@ -24,6 +24,7 @@ InfoLines:
     - "&7/fabrika dagit <Adet> &e» &aSunucudaki herkese belirtilen miktar kadar fabrika bloğu verir."
     - "&7/fabrika sorgula <Oyuncu> &e» &aGirilen oyuncunun fabrikalarını gösterir."
     - "&7/fabrika purge &e» &aTüm fabrika bloklarını kaldırır."
+    - "&7/fabrika donustur <Material> &e» &aAktif tüm fabrika bloklarını yeni blokla değiştirir."
     - "&7/fabrika reload &e» &aEklentiyi yeniler."
 FactoryItem:
   System:
@@ -52,6 +53,7 @@ GUI:
       OwnerLore:
         - "&7-------------"
         - "&eID: &c%id%"
+        - "&eLevel: &c%level%"
         - "&eFabrika Sayısı: &c%toplamadet%"
         - "&7-------------"
     Player:
@@ -86,12 +88,16 @@ Errors:
     PurgeCommandERR: "&7/fabrika purge &e» &aTüm fabrika bloklarını kaldırır."
     SorgulaCommandERR: "&7/fabrika sorgula <Oyuncu> &e» &aGirilen oyuncunun fabrikalarını gösterir."
     StatsCommandERR: "&7/fabrika stats &e» &aKurduğun fabrikalardan ne kadar kazandığını ve diğer detayları görüntülersin."
+    DonusturmeCommandERR: "&7/fabrika donustur <Material> &e» &aAktif tüm fabrika bloklarını yeni blokla değiştirir."
   PermissionError: "&4Maalesef bu komutu kullanmak için yetkiniz yok."
   PlayerNotFound: "&e%player% &4Adlı oyuncu bulunamadı!"
   MustBeNumber: "&c%deger% &eBir sayı olmadığı için komut başarısız oldu."
   WorldError: "&eBulunduğun dünya olan &c%dunya% &eadlı dünyada fabrikalar devre dışı."
   NullFactoryError: "&c%player% &eAdlı oyuncunun hiç fabrikası yok."
   ConsoleError: "&4Konsol bu komutu kullanamaz !"
+  NewMaterialError: "&4Girilen yeni materyal hatalı. Lütfen materyal ismini kontrol edin."
+  NoFactory: "&4Sunucuda aktif herhangi bir fabrika bloğu bulunamadı!"
+  AlreadyEqualsMaterial: "&4Girilen yeni materyal eski materyal ile zaten aynı."
 Success:
   GivenItem: "&d%player% &eAdlı oyuncuya &c%adet% &etane fabrika verildi."
   DistributedItem: "&eSunucudaki herkese &c%adet% &etane fabrika dağıtıldı."
@@ -99,6 +105,7 @@ Success:
   Reload: "&eEklenti başarılı bir şekilde yenilendi."
   Deleted: "&c%player% &eAdlı oyuncunun &d%adet% &efabrikası silindi."
   Purged: "&c%toplamoyuncu% &eOyuncunun toplamda &d%adet% &efabrikası silindi."
+  ReplacedAllFactories: "&eToplamda &c%totalblok% &efabrikanın blok türü değiştirildi."
 ########################################
 #    MySQL Ayarları / MySQL Settings   #
 ########################################

@@ -5,7 +5,6 @@ import me.t3sl4.factory.T3SL4Factory;
 import me.t3sl4.factory.util.MessageUtil;
 import me.t3sl4.factory.util.SettingsManager;
 import me.t3sl4.factory.util.XMaterial;
-import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.SkullType;
@@ -41,7 +40,7 @@ public class BlockGUIManager {
             String s = (String)itemLoreIterator.next();
             if(sahiplik) {
                 meta.setDisplayName(MessageUtil.FactoryMenuBlockOwnerItemName.replaceAll("%player%", tiklayanOyuncu.getName()));
-                outLore.add(T3SL4Factory.chatcolor(s.replaceAll("%id%", String.valueOf(id)).replaceAll("%toplamadet%", manager.data.getConfig().getString(tiklayanOyuncu.getUniqueId() + ".FactoryCount"))));
+                outLore.add(T3SL4Factory.chatcolor(s.replaceAll("%id%", String.valueOf(id)).replaceAll("%toplamadet%", manager.data.getConfig().getString(tiklayanOyuncu.getUniqueId() + ".FactoryCount")).replaceAll("%level%", String.valueOf(manager.data.getConfig().getInt(tiklayanOyuncu.getUniqueId() + ".Factories." + id + ".Level")))));
             } else {
                 meta.setDisplayName(MessageUtil.FactoryMenuBlockPlayerItemName.replaceAll("%player%", FactoryAPI.findNameByID(id)));
                 outLore.add(T3SL4Factory.chatcolor(s.replaceAll("%player%", FactoryAPI.findNameByID(id))));

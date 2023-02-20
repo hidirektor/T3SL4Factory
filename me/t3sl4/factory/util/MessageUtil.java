@@ -52,6 +52,11 @@ public class MessageUtil {
     public static String Reload;
     public static String Deleted;
     public static String Purged;
+    public static String DonusturmeCommandERR;
+    public static String NewMaterialError;
+    public static String NoFactory;
+    public static String AlreadyEqualsMaterial;
+    public static String ReplacedAllFactories;
 
     public static void loadMessages() {
         Prefix = T3SL4Factory.chatcolor(manager.config.getConfig().getString("Prefix"));
@@ -96,5 +101,10 @@ public class MessageUtil {
         FactoryMenuBlockPlayerCommand = manager.config.getConfig().getString("GUI.BlockGUI.Player.PlayerItemCommand");
         FactoryMenuBlockPlayerTitle = T3SL4Factory.chatcolor(manager.config.getConfig().getString("GUI.BlockGUI.Player.Title"));
         FactoryMenuBlockOwnerTitle = T3SL4Factory.chatcolor(manager.config.getConfig().getString("GUI.BlockGUI.Owner.Title"));
+        DonusturmeCommandERR = T3SL4Factory.chatcolor(manager.config.getConfig().getString("Errors.CommandErrors.DonusturmeCommandERR"));
+        NewMaterialError = T3SL4Factory.chatcolor(manager.config.getConfig().getString("Errors.NewMaterialError"));
+        NoFactory = T3SL4Factory.chatcolor(manager.config.getConfig().getString("Errors.NoFactory"));
+        AlreadyEqualsMaterial = T3SL4Factory.chatcolor(manager.config.getConfig().getString("Errors.AlreadyEqualsMaterial"));
+        ReplacedAllFactories = T3SL4Factory.chatcolor(manager.config.getConfig().getString("Success.ReplacedAllFactories"));
     }
 }

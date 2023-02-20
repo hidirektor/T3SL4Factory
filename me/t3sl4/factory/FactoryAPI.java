@@ -58,12 +58,12 @@ public class FactoryAPI {
     public static String findNameByID(int id) {
         int playerCount = manager.playerdata.getConfig().getInt("Players.Count");
         for(int i=0; i<playerCount; i++) {
-            String uuid = manager.playerdata.getConfig().getString("Players.Players." + i + ".UUID");
-            int playerFactoryCount = manager.data.getConfig().getInt(uuid + ".FactoryCount");
+            String playerUUID = manager.playerdata.getConfig().getString("Players.Players." + i + ".UUID");
+            int playerFactoryCount = manager.data.getConfig().getInt(playerUUID + ".FactoryCount");
             for(int j=0; j<playerFactoryCount; j++) {
-                int checkID = manager.data.getConfig().getInt(uuid + ".Factories." + j + ".ID");
-                if(checkID == id) {
-                    return manager.data.getConfig().getString(uuid + ".Name");
+                int ID = manager.data.getConfig().getInt(playerUUID + ".Factories." + j + ".ID");
+                if(id == ID) {
+                    return manager.data.getConfig().getString(playerUUID + ".Name");
                 }
             }
         }
