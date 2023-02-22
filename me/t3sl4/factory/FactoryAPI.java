@@ -70,7 +70,7 @@ public class FactoryAPI {
         return null;
     }
 
-    public static boolean checkLocationFactoryisNull(Location loc, Player p) {
+    public static boolean checkLocationFactoryIsNull(Location loc, Player p) {
         int playerCount = manager.playerdata.getConfig().getInt("Players.Count");
         int checkX = loc.getBlockX();
         int checkY = loc.getBlockY();

@@ -40,6 +40,11 @@ FactoryItem:
       - "&efabrikanı yükseltmeyi unutma :))"
       - " "
       - "&7-----------"
+    Hologram:
+      - "&7----------"
+      - "&eFabrika Sahibi: &c%player%"
+      - "&eLeveli: &c%level%"
+      - "&7----------"
     Enchants:
       - "DURABILITY:30"
       - "DIG_SPEED:20"

@@ -44,6 +44,7 @@ public class MessageUtil {
     public static String FactoryMenuBlockPlayerCommand;
     public static String FactoryMenuBlockOwnerTitle;
     public static String FactoryMenuBlockPlayerTitle;
+    public static List<String> Hologram;
 
 
     public static String GivenItem;
@@ -106,5 +107,6 @@ public class MessageUtil {
         NoFactory = T3SL4Factory.chatcolor(manager.config.getConfig().getString("Errors.NoFactory"));
         AlreadyEqualsMaterial = T3SL4Factory.chatcolor(manager.config.getConfig().getString("Errors.AlreadyEqualsMaterial"));
         ReplacedAllFactories = T3SL4Factory.chatcolor(manager.config.getConfig().getString("Success.ReplacedAllFactories"));
+        Hologram = T3SL4Factory.colorizeList(manager.config.getConfig().getStringList("FactoryItem.Specs.Hologram"));
     }
 }

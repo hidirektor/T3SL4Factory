@@ -4,6 +4,7 @@ import me.t3sl4.factory.FactoryAPI;
 import me.t3sl4.factory.T3SL4Factory;
 import me.t3sl4.factory.util.MessageUtil;
 import me.t3sl4.factory.util.SettingsManager;
+import me.t3sl4.factory.util.hologram.base.Holograms;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,6 +14,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class PlaceListener implements Listener {
     SettingsManager manager = SettingsManager.getInstance();
+    public Holograms holograms;
 
     @EventHandler
     public void onFactoryPlace(BlockPlaceEvent e) {
@@ -63,6 +65,7 @@ public class PlaceListener implements Listener {
             int data = manager.data.getConfig().getInt(blokKoyan.getUniqueId() + ".Factories." + (factoryCount-1) + ".ID");
             int factoryLevel = manager.data.getConfig().getInt(blokKoyan.getUniqueId() + ".Factories." + (factoryCount-1) + ".Level");
             FactoryAPI.startTask(e.getBlockPlaced(), factoryLevel, data);
+            //manager.holograms.createHologramWithId(blokKoyan.getUniqueId(), e.getBlockPlaced().getLocation(), MessageUtil.Hologram);
         } else {
             manager.data.getConfig().set(blokKoyan.getUniqueId() + ".FactoryCount", manager.data.getConfig().getInt(blokKoyan.getUniqueId() + ".FactoryCount")+1);
             manager.data.save();

@@ -3,12 +3,14 @@ package me.t3sl4.factory.util;
 import me.t3sl4.factory.FactoryAPI;
 import me.t3sl4.factory.T3SL4Factory;
 import me.t3sl4.factory.commands.FactoryCommand;
-import me.t3sl4.factory.item.CustomItem;
+import me.t3sl4.factory.util.hologram.base.Holograms;
+import me.t3sl4.factory.util.item.CustomItem;
 import me.t3sl4.factory.listener.BreakListener;
 import me.t3sl4.factory.listener.ClickListener;
 import me.t3sl4.factory.listener.InventoryClickListener;
 import me.t3sl4.factory.listener.PlaceListener;
-import me.t3sl4.factory.mysql.MySQL;
+import me.t3sl4.factory.util.mcyaml.YamlOf;
+import me.t3sl4.factory.util.mysql.MySQL;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
@@ -27,6 +29,8 @@ public class SettingsManager {
     private T3SL4Factory tfactory;
 
     public CustomItem factoryItem;
+
+    public Holograms holograms;
 
     public static SettingsManager getInstance() {
         return instance;
@@ -50,6 +54,7 @@ public class SettingsManager {
 
         loadCustomItem();
         factoryItemTask();
+        //this.holograms = hologram;
     }
 
     public void stop() {

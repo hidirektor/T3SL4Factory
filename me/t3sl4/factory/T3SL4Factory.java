@@ -2,6 +2,8 @@ package me.t3sl4.factory;
 
 import me.t3sl4.factory.util.SettingsManager;
 import me.t3sl4.factory.util.MessageUtil;
+import me.t3sl4.factory.util.hologram.base.Holograms;
+import me.t3sl4.factory.util.mcyaml.YamlOf;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -34,6 +36,8 @@ public class T3SL4Factory extends JavaPlugin {
         } else {
             Bukkit.getConsoleSender().sendMessage(T3SL4Factory.chatcolor("&e[CAC] &cPlaceholder yuklu olmadigindan bazi ozellikler devre disi"));
         }
+        //Holograms hologram =
+                //new Holograms(this, new YamlOf(this, "natural", "holograms"));
         this.manager.setup(this);
     }
 
