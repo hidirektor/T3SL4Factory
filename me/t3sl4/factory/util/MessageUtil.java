@@ -1,6 +1,7 @@
 package me.t3sl4.factory.util;
 
 import me.t3sl4.factory.T3SL4Factory;
+import org.bukkit.enchantments.Enchantment;
 
 import java.util.List;
 
@@ -58,6 +59,11 @@ public class MessageUtil {
     public static String NoFactory;
     public static String AlreadyEqualsMaterial;
     public static String ReplacedAllFactories;
+    public static String YukseltmeItemName;
+    public static List<String> YukseltmeItemLore;
+    public static boolean YukseltmeItemEnchantSystem;
+    public static boolean YukseltmeItemLoreSystem;
+    public static List<String> YukseltmeItemEnchantList;
 
     public static void loadMessages() {
         Prefix = T3SL4Factory.chatcolor(manager.config.getConfig().getString("Prefix"));
@@ -108,5 +114,10 @@ public class MessageUtil {
         AlreadyEqualsMaterial = T3SL4Factory.chatcolor(manager.config.getConfig().getString("Errors.AlreadyEqualsMaterial"));
         ReplacedAllFactories = T3SL4Factory.chatcolor(manager.config.getConfig().getString("Success.ReplacedAllFactories"));
         Hologram = T3SL4Factory.colorizeList(manager.config.getConfig().getStringList("FactoryItem.Specs.Hologram"));
+        YukseltmeItemName = T3SL4Factory.chatcolor(manager.config.getConfig().getString("GUI.BlockGUI.YukseltmeItem.Name"));
+        YukseltmeItemLore = T3SL4Factory.colorizeList(manager.config.getConfig().getStringList("GUI.BlockGUI.YukseltmeItem.Lore"));
+        YukseltmeItemEnchantList = manager.config.getConfig().getStringList("GUI.BlockGUI.YukseltmeItem.Specs.Enchants");
+        YukseltmeItemEnchantSystem = manager.config.getConfig().getBoolean("GUI.BlockGUI.YukseltmeItem.System.Enchant");
+        YukseltmeItemLoreSystem = manager.config.getConfig().getBoolean("GUI.BlockGUI.YukseltmeItem.System.Lore");
     }
 }

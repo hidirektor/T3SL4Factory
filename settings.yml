@@ -61,6 +61,24 @@ GUI:
         - "&eLevel: &c%level%"
         - "&eFabrika Sayısı: &c%toplamadet%"
         - "&7-------------"
+      YukseltmeItem:
+        Name: "&dFabrikayı Yükselt"
+        Lore:
+          - "&7-------------"
+          - "&eŞuanki Seviye: &c%eski_seviye%"
+          - "&eSonraki Seviye: &c%sonraki_seviye%"
+          - "&7  "
+          - "&5Yükseltme için Gerekenler:"
+          - "&ePara: &4%gereken_para%"
+          - "&eItem:"
+          - "&7-------------"
+        System:
+          Lore: true
+          Enchant: false
+        Specs:
+          Enchants:
+            - "DURABILITY:30"
+            - "ARROW_FIRE:20"
     Player:
       Title: "&eFabrika Sorgu -- Oyuncu"
       PlayerItemName: "&c%player%"
