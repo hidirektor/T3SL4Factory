@@ -212,7 +212,11 @@ public class FactoryCommand implements CommandExecutor {
                 }
             }
             if(args[0].equalsIgnoreCase("donustur")) {
-                if(commandSender.isOp() || commandSender.hasPermission("t3sl4factory.donustur") || commandSender instanceof ConsoleCommandSender) {
+                if(commandSender instanceof ConsoleCommandSender) {
+                    commandSender.sendMessage(MessageUtil.ConsoleError);
+                    return false;
+                }
+                if(commandSender.isOp() || commandSender.hasPermission("t3sl4factory.donustur")) {
                     if(args.length == 2) {
                         ItemStack newItemStack = new ItemStack(Material.getMaterial(args[1]));
                         if(newItemStack != null) {
@@ -225,7 +229,8 @@ public class FactoryCommand implements CommandExecutor {
                                 Location checkLoc = new Location(Bukkit.getWorld(worldName), checkX, checkY, checkZ);
                                 ItemStack checkItemStack = new ItemStack(checkLoc.getBlock().getType());
                                 if(!newItemStack.equals(checkItemStack)) {
-                                    int degisenBlokSayisi = 0;
+                                    FactoryAPI.changeFactoryBlock(newItemStack, (Player)commandSender);
+                                    /*int degisenBlokSayisi = 0;
                                     int playerCount = manager.playerdata.getConfig().getInt("Players.Count");
                                     for(int i=0; i<playerCount; i++) {
                                         String UUID = manager.playerdata.getConfig().getString("Players." + i + ".UUID");
@@ -239,8 +244,8 @@ public class FactoryCommand implements CommandExecutor {
                                             replaceLoc.getBlock().setType(checkItemStack.getType());
                                             degisenBlokSayisi++;
                                         }
-                                    }
-                                    commandSender.sendMessage(MessageUtil.ReplacedAllFactories.replaceAll("%totalblok%", String.valueOf(degisenBlokSayisi)));
+                                    }*/
+
                                 } else {
                                     commandSender.sendMessage(MessageUtil.AlreadyEqualsMaterial);
                                 }

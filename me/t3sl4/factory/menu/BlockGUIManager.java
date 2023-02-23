@@ -36,6 +36,8 @@ public class BlockGUIManager {
             itemLoreIterator = MessageUtil.FactoryMenuBlockPlayerLore.iterator();
         }
 
+        //TODO
+        //yükseltme sistemi !!!
         while(itemLoreIterator.hasNext()) {
             String s = (String)itemLoreIterator.next();
             if(sahiplik) {

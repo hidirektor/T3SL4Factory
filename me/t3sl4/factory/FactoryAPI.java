@@ -90,6 +90,45 @@ public class FactoryAPI {
         return false;
     }
 
+    public static void updateFactory(Location blockLoc, int nextLevel, Player clickedPlayer) {
+        String UUID = clickedPlayer.getUniqueId().toString();
+        int updatedFactoryX = blockLoc.getBlockX();
+        int updatedFactoryY = blockLoc.getBlockY();
+        int updatedFactoryZ = blockLoc.getBlockZ();
+        int playerFactoryCount = manager.data.getConfig().getInt(UUID + ".FactoryCount");
+        for(int i=0; i<playerFactoryCount; i++) {
+            int checkX = manager.data.getConfig().getInt(UUID + ".Factories." + i + ".X");
+            int checkY = manager.data.getConfig().getInt(UUID + ".Factories." + i + ".Y");
+            int checkZ = manager.data.getConfig().getInt(UUID + ".Factories." + i + ".Z");
+            if(updatedFactoryX == checkX && updatedFactoryY == checkY && updatedFactoryZ == checkZ) {
+                manager.data.getConfig().set(UUID + ".Factories." + i + ".Level", nextLevel);
+                manager.data.save();
+                update(1);
+            }
+        }
+    }
+
+    public static void changeFactoryBlock(ItemStack newMaterial, Player p) {
+        stopAllTasks();
+        int degisenBlokSayisi = 0;
+        int playerCount = manager.playerdata.getConfig().getInt("Players.Count");
+        for(int i=0; i<playerCount; i++) {
+            String UUID = manager.playerdata.getConfig().getString("Players.Player." + i + ".UUID");
+            int playerFactoryCount = manager.data.getConfig().getInt(UUID + ".FactoryCount");
+            for(int j=0; j<playerFactoryCount; j++) {
+                String worldName = manager.data.getConfig().getString(UUID + ".Factories." + j + ".World");
+                int checkX = manager.data.getConfig().getInt(UUID + ".Factories." + j + ".X");
+                int checkY = manager.data.getConfig().getInt(UUID + ".Factories." + j + ".Y");
+                int checkZ = manager.data.getConfig().getInt(UUID + ".Factories." + j + ".Z");
+                Location checkLoc = new Location(Bukkit.getWorld(worldName), checkX, checkY, checkZ);
+                checkLoc.getBlock().setType(newMaterial.getType());
+                degisenBlokSayisi++;
+            }
+        }
+        update(1);
+        p.sendMessage(MessageUtil.ReplacedAllFactories.replaceAll("%totalblok%", String.valueOf(degisenBlokSayisi)));
+    }
+
     public static boolean checkOwner(Location blockLoc, Player tiklayanOyuncu) {
         int checkX = blockLoc.getBlockX();
         int checkY = blockLoc.getBlockY();
